@@ -1,0 +1,122 @@
+﻿<Window x:Class="Contabilidad.Formularios.Principal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Contabilidad.Formularios"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="400"
+             Height="300" Width="400"
+             WindowStartupLocation="CenterScreen">
+    
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Background" Value="#373655"/>
+            <Setter Property="Foreground" Value="#E7E9F8"/>
+            <Setter Property="BorderBrush" Value="#373655"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FE99E7"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+    </Window.Resources>
+    <Grid Background="#1B1C30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Nuevo" Click="Nuevo_Click"/>
+            <Button Grid.Column="1" Content="Modificar" Click="Leer_Click"/>
+            <Button Grid.Column="2" Content="Eliminar"/>
+        </Grid>
+
+
+        <ListBox x:Name="panelClientes"
+                 MouseDoubleClick="Iniciar_DobleClick"
+                 ItemsSource="{Binding listClientes}" DisplayMemberPath="Nombre"
+                 SelectedItem="{Binding clienteSeleccionado}"
+                 Grid.Row="1" Visibility="Visible" Margin="10"
+                 Background="Transparent"
+                 BorderThickness="0"
+                 FontFamily="Bold"
+                 FontSize="13"
+                 Foreground="#E7E9F8">
+        </ListBox>
+
+        <Grid x:Name="panelAltaClientes" 
+              Grid.Row="1"
+              Margin="15,30,15,20"
+              Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0"
+                   Content="Razon Social"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="#E7E9F8"/>
+            <Label Grid.Row="1" Grid.Column="0"
+                   Content="RFC"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="#E7E9F8"/>
+            <Label Grid.Row="2" Grid.Column="0"
+                   Content="Regimen Fiscal"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="#E7E9F8"/>
+
+            <TextBox x:Name="txtNombre" Grid.Row="0" Grid.Column="1"
+                     Height="25"
+                     Margin="10">
+
+            </TextBox>
+            <TextBox x:Name="txtRfc" Grid.Row="1" Grid.Column="1"
+                     Height="25"
+                     Margin="10">
+
+            </TextBox>
+            <TextBox x:Name="txtRegimen" Grid.Row="2" Grid.Column="1"
+                     Height="25"
+                     Margin="10">
+
+            </TextBox>
+
+            <Button x:Name="btnAgregarCliente"
+                    Content="Insertar"
+                    Click="AgregarCliente_Click"
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    Margin="100,15,100, 0">
+                
+            </Button>
+
+        </Grid>
+        
+    </Grid>
+</Window>

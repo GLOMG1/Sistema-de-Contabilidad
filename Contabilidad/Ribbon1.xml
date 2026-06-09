@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="Ribbon_Load">
+  <ribbon>
+    <tabs>
+      <tab id="Inicio" label="Contabilidad">
+			<group id="grpInicio" label="Contribuentes">
+				<button label="Iniciar"
+						id ="btnIniciar"
+						getImage ="GetImage"
+						onAction="btnIniciar"
+						size="large"/>
+				<separator id ="Separador01"/>
+				<box id="boxContribuyentes" boxStyle="vertical">
+					<button label="Abrir carpeta"
+							id="btnAbrirCarpeta"/>
+					<button label="Ver contraseñas"
+							id="btnVerContraseñas"/>
+					<button label="Crear ejercicio"
+							id="btnCrearEjercicio"
+							onAction="btnCrearEjercicio"/>
+				</box>
+			</group>
+		  
+			<group id="grpFacturas" label ="Facturas">
+				<button label="Importar"
+						id="btnImportar"
+						onAction="btnImportar"
+						getImage="GetImage"
+						size="large"/>
+				<button label="Guardar en Base de Datos"
+						id="btnGuardarBD"
+						getImage="GetImage"
+						size="large"/>
+				<separator id="Separador02"/>
+				<button label="Confuguraciones de lectura"
+						id="btnConfiguracionFacturas"/>
+				<button label ="Reportes"
+						id="btnReportes"/>
+				<button label="Descargas"
+						id="btnDescargasSAT"
+						onAction="btonPruebas"/>
+			</group>
+			<group id="grpProveedores" label="Proveedores">
+				<button label="Proveedores"
+						id="btnProveedores"/>
+				<button label="Acreedores"
+						id="btnAcreedores"/>
+			</group>
+
+			<group id="grpBancos" label="Bancos">
+				<button label ="Importar Estado de Cuenta"
+						id ="btnImportarEC"
+						getImage="GetImage"
+						size ="large"/>
+				<button label ="Conciliar"
+						id="btnConciliar"
+						onAction="btnConciliar"
+						getImage="GetImage"
+						size ="large"/>
+			</group>
+
+			<group id="grpContabilidad" label="Contabilidad">
+				<button label="Catalogo de cuentas"
+						id="btnCatalogoCuentas"
+						getImage="GetImage"
+						size ="large"/>
+				<button label ="Evento economico"
+						id="btnEventoEco"
+						getImage="GetImage"
+						size ="large"/>
+				<button label="Determinacion de Impuesto"
+						id="btnDeterminarImp"
+						getImage="GetImage"
+						size ="large"/>
+			</group>
+		  
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
+
