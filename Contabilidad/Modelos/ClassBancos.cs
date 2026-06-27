@@ -9,6 +9,7 @@ namespace Contabilidad.Modelos
 {
     public class ClassBancos
     {
+        public int filaTabla {  get; set; }
         public int IdDataBody { get; set; }
         public int IdRegistro { get; set;  }
         public DateTime FechaOperacion {  get; set; }

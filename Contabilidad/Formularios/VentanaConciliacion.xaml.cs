@@ -1,11 +1,14 @@
 ﻿using Contabilidad.Modelos;
 using Contabilidad.Servicios;
+using Microsoft.SqlServer.Server;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -14,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 
 namespace Contabilidad.Formularios
@@ -23,109 +27,415 @@ namespace Contabilidad.Formularios
         public string Campo { get; set;  }
         public string Valor {  get; set; }
     }
-    /// <summary>
-    /// Lógica de interacción para VentanaConciliacion.xaml
-    /// </summary>
+
     public partial class VentanaConciliacion : Window
     {
         /// Elementos de uso dentro de la venta
         Excel_Function excel = new Excel_Function();
-        public List<ClassBancos> tblBancos { get; set; }
-        public List<String> EncabezadosBancos { get; set;  }
-        public List<ClassFacturas> tblFacturasEgreso {  get; set; }
-        public List<ClassFacturas> tblFacturasIngreso { get; set; }
-        public List<String> EncabezadosFacturas { get; set; }
+        public ExcelDatosTabla tablaBancos { get; set; }
+        public ExcelDatosTabla tablaEgresos { get; set;  }
+        public ExcelDatosTabla tablaIngresos { get; set; }
         public List<Filtro> FiltrosBancos { get; set; }
         public List<Filtro> FiltrosFacturas {  get; set; }
+        
+        private DispatcherTimer timerFacturas;
+        private DispatcherTimer timerBancos;
 
         /// Metodos esenciales dentro de la ventana
         public VentanaConciliacion()
         {
             InitializeComponent();
 
-            EncabezadosBancos = excel.Encabezados("EstadoCuenta");
-            EncabezadosFacturas = excel.Encabezados("TblFactEgresos");
-            tblFacturasEgreso = excel.ObtenerFacturas("TblFactEgresos");
+            IniciarTimers();
+
+            tablaBancos = excel.ObtenerTabla("EstadoCuenta");
+            tablaEgresos = excel.ObtenerTabla("TblFactEgresos");
+            tablaIngresos = excel.ObtenerTabla("TblFactIngresos");
+
+            InicializarComboBox();
+
             FiltrosBancos = new List<Filtro>();
             FiltrosFacturas = new List<Filtro>();
-            dgFacturas.ItemsSource = tblFacturasEgreso;
         }
         public void MostarDataGrid_Cheked(object sender, RoutedEventArgs e)
         {
-            if (rb_E.IsChecked == true)
-            {
-                List<ClassBancos> bancos = excel.ObtenerBancos(true, FiltrosBancos);
-                dgBancos.ItemsSource = bancos;
-            }
-            if (rb_I.IsChecked == true)
-            {
-                List<ClassBancos> bancos = excel.ObtenerBancos(false, FiltrosBancos);
-                dgBancos.ItemsSource = bancos;
-            }
-        }
-        public void CambiosFiltros(object sender, KeyEventArgs e)
-        {
-            List<string> ListaFiltrada;
-            ComboBox combo = (ComboBox)sender;
-            string texto = combo.Text.ToLower();
-
-            ListaFiltrada = EncabezadosBancos
-                .Where(x => x.ToLower().Contains(texto))
-                .ToList();
-
-            combo.ItemsSource = ListaFiltrada;
-            combo.IsDropDownOpen = ListaFiltrada.Any();
-        }
-        public void CambiosValores(object sender, TextChangedEventArgs e)
-        {
+            LimpiarBusquedas();
             FiltrosBancos.Clear();
-            
-            if(tb_Campo1.Text != "" && tb_Valor1.Text != "")
+            FiltrosFacturas.Clear();
+
+            if (rb_E.IsChecked == true)
             {
-                FiltrosBancos.Add(new Filtro
+                dgBancos.ItemsSource = CrearDataGridBancos(tablaBancos, false);
+                dgFacturas.ItemsSource = CrearDataGridFacturas(tablaEgresos);
+            }
+            if (rb_I.IsChecked == true)
+            {
+                dgBancos.ItemsSource = CrearDataGridBancos(tablaBancos, true);
+                dgFacturas.ItemsSource = CrearDataGridFacturas(tablaIngresos);
+            }
+        }
+        public void Btn_Buscar(object sender, RoutedEventArgs e)
+        {
+            if (dgBancos.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Olvidaste Seleccionar un movimiento bancario");
+                return;
+            }
+
+            decimal ImporteBuscado = 0;
+            foreach (ClassBancos item in dgBancos.SelectedItems)
+            {
+                ImporteBuscado = ImporteBuscado + item.Importe;
+            }
+
+            dgFacturas.SelectedItems.Clear();
+            foreach (ClassFacturas item in dgFacturas.Items)
+            {
+                if(item.TotalCFDI == ImporteBuscado)
                 {
-                    Campo = tb_Campo1.Text,
-                    Valor = tb_Valor1.Text,
+                    dgFacturas.SelectedItems.Add(item);
+                    dgFacturas.ScrollIntoView(item);
+                    return;
+                }
+            }
+        }
+        public void Btn_Conciliar(object sender, RoutedEventArgs e)
+        {
+            if (dgBancos.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Olvidaste Seleccionar un movimiento bancario");
+                return;
+            }
+            if (dgFacturas.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Olvidaste Seleccionar alguna factura");
+                return;
+            }
+
+            string nombreTabla = rb_E.IsChecked == true ? "TblFactEgresos": "TblFactIngresos";
+
+            List<ClassBancos> filasBancos = dgBancos.SelectedItems.Cast<ClassBancos>().ToList();
+            List<ClassFacturas> filasFacturas = dgFacturas.SelectedItems.Cast<ClassFacturas>().ToList();
+
+            /// tabla Facturas
+            string IdRegistroBancos = string.Join("; ", filasBancos.Select(f => f.IdDataBody).Distinct()) + "; ";
+            string FechaBancos = string.Join("; ", filasBancos.Select(f => f.FechaOperacion.ToString("dd/MM/yyyy")).Distinct()) + "; ";
+            string FolioBancos; 
+            string Estatus = "CONCILIADO";
+            string Banco = string.Join("; ", filasBancos.Select(f => f.Banco).Distinct());
+            string NumeroCuenta = string.Join("; ", filasBancos.Select(f => f.NumCuenta).Distinct());
+
+            foreach(ClassFacturas f in filasFacturas)
+            {
+                excel.EscribirDatos(nombreTabla, f.filaTabla, "Id Registro Bancos", IdRegistroBancos);
+                excel.EscribirDatos(nombreTabla, f.filaTabla, "Fecha Bancos", FechaBancos);
+                excel.EscribirDatos(nombreTabla, f.filaTabla, "Estatus", Estatus);
+                excel.EscribirDatos(nombreTabla, f.filaTabla, "Banco", Banco);
+                excel.EscribirDatos(nombreTabla, f.filaTabla, "Num Cuenta", NumeroCuenta);
+            }
+
+            string SerieFolioInternoCFDI = string.Join("; ", filasFacturas.Select(b => b.SerieFolioInterno).Distinct()) + "; ";
+            string FechaCFDI = string.Join("; ", filasFacturas.Select(b => b.FechaCFDI.ToString("dd/MM/yyyy")).Distinct()) + "; ";
+            string FolioUUIDCFDI = string.Join("; ", filasFacturas.Select(b => b.FolioUUID).Distinct()) + "; ";
+            string NombreEmisorReceptorCFDI = string.Join("; ", filasFacturas.Select(b => b.NombreEmisor).Distinct()) + "; ";
+
+            foreach(ClassBancos b in filasBancos)
+            {
+                excel.EscribirDatos("EstadoCuenta", b.filaTabla, "Serie Folio Interno CFDI", SerieFolioInternoCFDI);
+                excel.EscribirDatos("EstadoCuenta", b.filaTabla, "Fecha CFDI", FechaCFDI);
+                excel.EscribirDatos("EstadoCuenta", b.filaTabla, "Folio UUID CFDI", FolioUUIDCFDI);
+                excel.EscribirDatos("EstadoCuenta", b.filaTabla, "Nombre Emisor Receptor CFDI", NombreEmisorReceptorCFDI);
+                excel.EscribirDatos("EstadoCuenta", b.filaTabla, "Estatus", Estatus);
+            }
+
+            tablaBancos = excel.ObtenerTabla("EstadoCuenta");
+            tablaEgresos = excel.ObtenerTabla("TblFactEgresos");
+            tablaIngresos = excel.ObtenerTabla("TblFactIngresos");
+
+            if (rb_E.IsChecked == true)
+            {
+                dgBancos.ItemsSource = CrearDataGridBancos(tablaBancos, false);
+                dgFacturas.ItemsSource = CrearDataGridFacturas(tablaEgresos);
+            }
+            if (rb_I.IsChecked == true)
+            {
+                dgBancos.ItemsSource = CrearDataGridBancos(tablaBancos, true);
+                dgFacturas.ItemsSource = CrearDataGridFacturas(tablaIngresos);
+            }
+
+            labelInferior.Content = "0.00";
+            labelSuperior.Content = "0.00";
+        }
+        public void SumarSeleccion_DG(object sender, SelectionChangedEventArgs e)
+        {
+            decimal contador = 0;
+            foreach(ClassBancos item in dgBancos.SelectedItems)
+            {
+                contador = contador + item.Importe;
+                labelSuperior.Content = contador.ToString("$#,##0.00");
+            }
+
+            contador = 0;
+            foreach (ClassFacturas item in dgFacturas.SelectedItems)
+            {
+                contador = contador + item.TotalCFDI;
+                labelInferior.Content = contador.ToString("$#,##0.00");
+            }
+        }
+        public void CambiosValoresBancos(object sender, TextChangedEventArgs e)
+        {
+            timerBancos.Stop(); 
+           timerBancos.Start(); 
+        }
+        public void CambiosValoresFacturas(object sender, TextChangedEventArgs e)
+        {
+            timerFacturas.Stop();
+            timerFacturas.Start();
+        }
+        /// Funciones para Metodos
+        private void InicializarComboBox()
+        {
+            Superior_Campo1.ItemsSource = tablaBancos.Encabezados;
+            Superior_Campo2.ItemsSource = tablaBancos.Encabezados;
+            Superior_Campo3.ItemsSource = tablaBancos.Encabezados;
+            Superior_Campo4.ItemsSource = tablaBancos.Encabezados;
+
+            Inferior_Campo1.ItemsSource = tablaEgresos.Encabezados;
+            Inferior_Campo2.ItemsSource = tablaEgresos.Encabezados;
+            Inferior_Campo3.ItemsSource = tablaEgresos.Encabezados;
+            Inferior_Campo4.ItemsSource = tablaEgresos.Encabezados;
+        }
+        private void IniciarTimers()
+        {
+            timerFacturas = new DispatcherTimer();
+            timerFacturas.Interval = TimeSpan.FromMilliseconds(650);
+            timerFacturas.Tick += busquedaFiltrosFactura;
+
+            timerBancos = new DispatcherTimer();
+            timerBancos.Interval = TimeSpan.FromMilliseconds(650);
+            timerBancos.Tick += busquedaFiltrosBanco;
+        }
+        private void LimpiarBusquedas()
+        {
+            var controles = new Control[]
+            {
+                Superior_Campo1, Superior_Campo2, Superior_Campo3, Superior_Campo4,
+                Superior_Valor1, Superior_Valor2, Superior_Valor3, Superior_Valor4,
+                Inferior_Campo1, Inferior_Campo2, Inferior_Campo3, Inferior_Campo4,
+                Inferior_Valor1, Inferior_Valor2, Inferior_Valor3, Inferior_Valor4
+            };
+
+            foreach (var control in controles)
+            {
+                switch (control)
+                {
+                    case TextBox tb:
+                        tb.Clear();
+                        break;
+
+                    case ComboBox cb:
+                        cb.SelectedIndex = -1;
+                        break;
+                }
+            }
+        }
+        private List<ClassFacturas> CrearDataGridFacturas(ExcelDatosTabla tabla)
+        {
+            List<ClassFacturas> tblFiltrada = new List<ClassFacturas>();
+            for (int fila = 1; fila <= tabla.NumFilas; fila++)
+            {
+                bool cumpleFiltros = true;
+
+                foreach (Filtro filtro in FiltrosFacturas)
+                {
+                    string valorTabla = tabla.GetValor(fila, filtro.Campo)?.ToString() ?? "";
+
+                    if (valorTabla.IndexOf(filtro.Valor, StringComparison.OrdinalIgnoreCase) < 0)
+                        cumpleFiltros = false;
+                }
+                if (tabla.GetValor(fila, "Forma Pago CFDI")?.ToString() == "99" ||
+                    tabla.GetValor(fila, "Estatus")?.ToString() == "CONCILIADO" ||
+                    tabla.GetValor(fila, "Tipo CFDI")?.ToString() == "N" ||
+                    tabla.GetValor(fila, "Fiscal")?.ToString() == "CANCELADA")
+                    cumpleFiltros = false;
+
+
+                if (!cumpleFiltros)
+                    continue;
+
+                tblFiltrada.Add(new ClassFacturas
+                {
+                    filaTabla = fila,
+                    FechaCFDI = DateTime.FromOADate(Convert.ToDouble(tabla.GetValor(fila, "Fecha CFDI"))),
+                    FolioUUID = tabla.GetValor(fila, "Folio UUID CFDI")?.ToString(),
+                    SerieFolioInterno = tabla.GetValor(fila, "Serie Folio Interno CFDI")?.ToString(),
+                    RfcEmisor = tabla.GetValor(fila, "RFC Emisor CFDI")?.ToString(),
+                    NombreEmisor = tabla.NombreTabla == "TblFactEgresos" ? tabla.GetValor(fila, "Nombre Emisor CFDI")?.ToString() : tabla.GetValor(fila, "Nombre Receptor CFDI")?.ToString(),
+                    TipoCFDI = tabla.GetValor(fila, "Tipo CFDI")?.ToString(),
+                    FormaPago = tabla.GetValor(fila, "Forma Pago CFDI")?.ToString(),
+                    MetodoPago = tabla.GetValor(fila, "Metodo Pago CFDI")?.ToString(),
+                    Concepto = tabla.GetValor(fila, "Concepto CFDI")?.ToString(),
+                    Fiscal = tabla.GetValor(fila, "Fiscal")?.ToString(),
+                    Estatus = tabla.GetValor(fila, "Estatus")?.ToString(),
+                    TotalCFDI = Convert.ToDecimal(tabla.GetValor(fila, "TOTAL CFDI") ?? 0)
                 });
             }
-            if (tb_Campo2.Text != "" && tb_Valor2.Text != "")
+            return tblFiltrada;
+        }
+        private List<ClassBancos> CrearDataGridBancos(ExcelDatosTabla tabla, bool tipo)
+        {
+            List<ClassBancos> tblFiltrada = new List<ClassBancos>();
+            for (int fila = 1; fila <= tabla.NumFilas; fila++)
             {
-                FiltrosBancos.Add(new Filtro
+                bool cumpleFiltros = true;
+
+                foreach (Filtro filtro in FiltrosBancos)
                 {
-                    Campo = tb_Campo2.Text,
-                    Valor = tb_Valor2.Text,
+                    string valorTabla = tabla.GetValor(fila, filtro.Campo)?.ToString() ?? "";
+
+                    if (valorTabla.IndexOf(filtro.Valor, StringComparison.OrdinalIgnoreCase) < 0)
+                        cumpleFiltros = false;
+                }
+                if (tipo)
+                {
+                    if (Convert.ToDecimal(tabla.GetValor(fila, "Depositos") ?? 0) == 0 ||
+                        tabla.GetValor(fila, "Estatus")?.ToString() != null)
+                        cumpleFiltros = false;
+                }
+                else
+                {
+                    if (Convert.ToDecimal(tabla.GetValor(fila, "Retiros") ?? 0) == 0 ||
+                        tabla.GetValor(fila, "Estatus")?.ToString() != null)
+                        cumpleFiltros = false;
+                }
+
+                if (!cumpleFiltros)
+                    continue;
+
+                tblFiltrada.Add(new ClassBancos
+                {
+                    filaTabla = fila,
+                    IdDataBody =  Convert.ToInt32(tabla.GetValor(fila, "Id Registro")),
+                    FechaOperacion = DateTime.FromOADate(Convert.ToDouble(tabla.GetValor(fila, "Fecha Operacion"))),
+                    Concepto = tabla.GetValor(fila, "Concepto")?.ToString(),
+                    Referencia = tabla.GetValor(fila, "Referencia")?.ToString(),
+                    Importe = tipo ? Convert.ToDecimal(tabla.GetValor(fila, "Depositos") ?? 0) : Convert.ToDecimal(tabla.GetValor(fila, "Retiros") ?? 0),
+                    Banco = tabla.GetValor(fila, "Banco")?.ToString(),
+                    NumCuenta = tabla.GetValor(fila, "Num Cuenta")?.ToString(),
+                    Clasificacion = tabla.GetValor(fila, "Clasificacion")?.ToString(),
                 });
             }
-            if (tb_Campo3.Text != "" && tb_Valor3.Text != "")
+            return tblFiltrada;
+        }
+        private void busquedaFiltrosFactura(object sender, EventArgs e)
+        {
+            if (FiltrosFacturas == null)
+                return;
+
+            FiltrosFacturas.Clear();
+
+            /// Filtros predeterminados
+
+            if (Inferior_Campo1.Text != "" && Inferior_Valor1.Text != "")
             {
-                FiltrosBancos.Add(new Filtro
+                FiltrosFacturas.Add(new Filtro
                 {
-                    Campo = tb_Campo3.Text,
-                    Valor = tb_Valor3.Text,
+                    Campo = Inferior_Campo1.Text,
+                    Valor = Inferior_Valor1.Text
+
                 });
             }
-            if (tb_Campo4.Text != "" && tb_Valor4.Text != "")
+            if (Inferior_Campo2.Text != "" && Inferior_Valor2.Text != "")
             {
-                FiltrosBancos.Add(new Filtro
+                FiltrosFacturas.Add(new Filtro
                 {
-                    Campo = tb_Campo4.Text,
-                    Valor = tb_Valor4.Text,
+                    Campo = Inferior_Campo2.Text,
+                    Valor = Inferior_Valor2.Text
+
+                });
+            }
+            if (Inferior_Campo3.Text != "" && Inferior_Valor3.Text != "")
+            {
+                FiltrosFacturas.Add(new Filtro
+                {
+                    Campo = Inferior_Campo3.Text,
+                    Valor = Inferior_Valor3.Text
+
+                });
+            }
+            if (Inferior_Campo4.Text != "" && Inferior_Valor4.Text != "")
+            {
+                FiltrosFacturas.Add(new Filtro
+                {
+                    Campo = Inferior_Campo4.Text,
+                    Valor = Inferior_Valor4.Text
+
                 });
             }
 
             if (rb_E.IsChecked == true)
             {
-                List<ClassBancos> bancos = excel.ObtenerBancos(true, FiltrosBancos);
-                dgBancos.ItemsSource = bancos;
+                dgFacturas.ItemsSource = CrearDataGridFacturas(tablaEgresos);
             }
-            if (rb_I.IsChecked == true)
+            else
             {
-                List<ClassBancos> bancos = excel.ObtenerBancos(false, FiltrosBancos);
-                dgBancos.ItemsSource = bancos;
+                dgFacturas.ItemsSource = CrearDataGridFacturas(tablaIngresos);
             }
+            timerFacturas.Stop();
         }
+        private void busquedaFiltrosBanco(object sender, EventArgs e)
+        {
+            if (FiltrosBancos == null)
+                return;
 
-        /// Funciones para Metodos
+            FiltrosBancos.Clear();
 
+            if (Superior_Campo1.Text != "" && Superior_Valor1.Text != "")
+            {
+                FiltrosBancos.Add(new Filtro
+                {
+                    Campo = Superior_Campo1.Text,
+                    Valor = Superior_Valor1.Text
+
+                });
+            }
+            if (Superior_Campo2.Text != "" && Superior_Valor2.Text != "")
+            {
+                FiltrosBancos.Add(new Filtro
+                {
+                    Campo = Superior_Campo2.Text,
+                    Valor = Superior_Valor2.Text
+
+                });
+            }
+            if (Superior_Campo3.Text != "" && Superior_Valor3.Text != "")
+            {
+                FiltrosBancos.Add(new Filtro
+                {
+                    Campo = Superior_Campo3.Text,
+                    Valor = Superior_Valor3.Text
+
+                });
+            }
+            if (Superior_Campo4.Text != "" && Superior_Valor4.Text != "")
+            {
+                FiltrosBancos.Add(new Filtro
+                {
+                    Campo = Superior_Campo4.Text,
+                    Valor = Superior_Valor4.Text
+
+                });
+            }
+
+            if (rb_E.IsChecked == true)
+            {
+                dgBancos.ItemsSource = CrearDataGridBancos(tablaBancos, false);
+            }
+            else
+            {
+                dgBancos.ItemsSource = CrearDataGridBancos(tablaBancos, true);
+            }
+            timerBancos.Stop();
+        }
     }
 }

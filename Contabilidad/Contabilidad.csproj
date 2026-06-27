@@ -222,6 +222,7 @@
     </Compile>
     <Compile Include="Modelos\ClassBancos.cs" />
     <Compile Include="Modelos\ClassFacturas.cs" />
+    <Compile Include="Modelos\ExcelDatosTabla.cs" />
     <Compile Include="Modelos\Factura.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

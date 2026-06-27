@@ -155,6 +155,28 @@ namespace Contabilidad.Servicios
             }
             FuncionesExcel(false);
         }
+        public void EscribirDatos(string nombreTabla, int numFila, string columna, string valor)
+        {
+            Excel.Worksheet hoja;
+            switch (nombreTabla)
+            {
+                case "EstadoCuenta":
+                hoja = (Excel.Worksheet)app.Worksheets["Bancos"];
+                break;
+                case "TblFactEgresos":
+                    hoja = (Excel.Worksheet)app.Worksheets["BaseEgresos"];
+                    break;
+                case "TblFactIngresos":
+                    hoja = (Excel.Worksheet)app.Worksheets["BaseIngresos"];
+                    break;
+                default:
+                    throw new ArgumentException($"Tabla '{nombreTabla}' no reconocida.");
+            }
+
+            var tbl = hoja.ListObjects[nombreTabla];
+            var columnaExcel = tbl.ListColumns[columna];
+            columnaExcel.DataBodyRange[numFila] = valor; 
+        }
         private void FuncionesExcel(bool interruptor)
         {
 
@@ -191,13 +213,11 @@ namespace Contabilidad.Servicios
             RutaDeTrabajo Prueba = JsonSerializer.Deserialize<RutaDeTrabajo>(json);
             MessageBox.Show(Prueba.rutaPrincipal);
         }
-        public List<string> Encabezados(string Nombretabla)
+        public ExcelDatosTabla ObtenerTabla(string nombreTabla)
         {
             Excel.Worksheet hoja;
-            Excel.ListObject tbl;
-            List<string> campos = new List<string>();
 
-            switch (Nombretabla)
+            switch (nombreTabla)
             {
                 case "EstadoCuenta":
                     hoja = (Excel.Worksheet)app.Worksheets["Bancos"];
@@ -209,151 +229,23 @@ namespace Contabilidad.Servicios
                     hoja = (Excel.Worksheet)app.Worksheets["BaseIngresos"];
                     break;
                 default:
-                    return new List<string>();
+                    throw new ArgumentException($"Tabla '{nombreTabla}' no reconocida.");
             }
-            tbl = hoja.ListObjects[Nombretabla];
-            Excel.Range headerRange = (Excel.Range)tbl.HeaderRowRange;
-            int totalColumnas = headerRange.Columns.Count;
+
+            var tbl = hoja.ListObjects[nombreTabla];
+
+            var headersRaw = (object[,])tbl.HeaderRowRange.Value2;
+            var headers = new List<string>();
+            for (int i = 1; i <= headersRaw.GetLength(1); i++)
+                headers.Add(headersRaw[1, i]?.ToString());
 
 
-            for (int i = 1; i <= totalColumnas; i++)
+            return new ExcelDatosTabla
             {
-                Excel.Range celda = (Excel.Range)headerRange.Cells[1, i];
-                campos.Add(celda.Value2?.ToString() ?? ""); 
-            }
-
-            return campos;
-        }
-        public List<ClassBancos> ObtenerBancos(bool tipoMov, List<Filtro>PanelSuperior)
-        {
-            List<ClassBancos> bancos = new List<ClassBancos>();
-
-            Excel.Worksheet sheet = HojaActiva();
-            Excel.ListObject tbl;
-            try
-            {
-                tbl = sheet.ListObjects["EstadoCuenta"];
-            }
-            catch
-            {
-                MessageBox.Show("No se encontró la tabla Bancos.");
-                return bancos;
-            }
-            object[,] datos = (object[,])tbl.DataBodyRange.Value2;
-
-            object[,] encabezados = (object[,])tbl.HeaderRowRange.Value2;
-            Dictionary<string, int> columnas = new Dictionary<string, int>();
-
-            for (int i = 1; i <= encabezados.GetLength(1); i++)
-            {
-                columnas[encabezados[1, i]?.ToString() ?? ""] = i;
-            }
-
-            int filas = datos.GetLength(0);
-
-            for (int fila = 1; fila <= filas; fila++)
-            {
-                if (PanelSuperior != null && PanelSuperior.Any())
-                {
-                    bool validador = true;
-                    foreach (Filtro x in PanelSuperior)
-                    {
-                        if (!columnas.ContainsKey(x.Campo)) continue;
-
-                        int idx = columnas[x.Campo];
-                        string valorCelda = datos[fila, idx]?.ToString() ?? "";
-
-                        if (!valorCelda.ToLower().Contains(x.Valor.ToLower()))
-                        {
-                            validador = false;
-                            break;
-                        }
-                    }
-                    if (!validador) continue;
-                }
-                if (tipoMov) {
-                    if (Convert.ToDecimal(datos[fila, 6]) == 0)
-                        continue;
-                }
-                else {
-                    if (Convert.ToDecimal(datos[fila, 7]) == 0)
-                        continue; 
-                }
-                if (datos[fila, 19]?.ToString() == "CONCILIADO")
-                    continue;
-
-                bancos.Add(new ClassBancos
-                {
-                    IdDataBody = fila,
-                    IdRegistro = Convert.ToInt32(datos[fila, 1] ?? 0),
-                    FechaOperacion = DateTime.FromOADate(Convert.ToDouble(datos[fila, 2])),
-                    FechaLiquidacion = datos[fila, 3]?.ToString(),
-                    Concepto = datos[fila, 4]?.ToString(),
-                    Referencia = datos[fila, 5]?.ToString(),
-                    Importe = tipoMov 
-                            ? Convert.ToDecimal(datos[fila, 6] ?? 0):
-                            Convert.ToDecimal(datos[fila, 7] ?? 0),
-                    SaldoOperacion = Convert.ToDecimal(datos[fila, 8] ?? 0),
-                    SaldoLiquidacion = Convert.ToDecimal(datos[fila, 9] ?? 0),
-                    Año = Convert.ToInt32(datos[fila, 10] ?? 0),
-                    Mes = datos[fila, 11]?.ToString(),
-                    Banco = datos[fila, 12]?.ToString(),
-                    NumCuenta = datos[fila, 13]?.ToString(),
-                    Clasificacion = datos[fila, 14]?.ToString(),
-                    SerieFolioInternoCFDI = datos[fila, 15]?.ToString(),
-                    FechaCFDI = datos[fila, 16]?.ToString(),
-                    FolioUUIDCFDI = datos[fila, 17]?.ToString(),
-                    NombreEmisorReceptorCFDI = datos[fila, 18]?.ToString(),
-                    Estatus = datos[fila, 19]?.ToString(),
-                    IdRegistroAuxiliar = datos[fila, 20]?.ToString(),
-                    FechaAuxiliar = datos[fila, 21]?.ToString(),
-                    FolioAuxilar = datos[fila, 22]?.ToString(),
-                    EstatusAUXILIAR = datos[fila, 23]?.ToString()
-                });
-            }
-            return bancos;
-        }
-        public List<ClassFacturas> ObtenerFacturas(string Nombretabla)
-        {
-            List<ClassFacturas> tblFacturas = new List<ClassFacturas>();
-            Excel.Worksheet hoja;
-            Excel.ListObject tbl;
-            switch (Nombretabla)
-            {
-                case "EstadoCuenta":
-                    hoja = (Excel.Worksheet)app.Worksheets["Bancos"];
-                    break;
-                case "TblFactEgresos":
-                    hoja = (Excel.Worksheet)app.Worksheets["BaseEgresos"];
-                    break;
-                case "TblFactIngresos":
-                    hoja = (Excel.Worksheet)app.Worksheets["BaseIngresos"];
-                    break;
-                default:
-                    return tblFacturas;
-            }
-            tbl = hoja.ListObjects[Nombretabla];
-            object[,] datos = (object[,])tbl.DataBodyRange.Value2;
-
-            int numFilas = datos.GetLength(0);
-
-            for(int fila = 1; fila <= numFilas; fila++)
-            {
-                tblFacturas.Add(new ClassFacturas
-                {
-                    FechaCFDI = DateTime.FromOADate(Convert.ToDouble(datos[fila, 12])),
-                    FolioUUID = datos[fila, 16]?.ToString(),
-                    SerieFolioInterno = datos[fila, 7]?.ToString(),
-                    RfcEmisor = datos[fila, 8]?.ToString(),
-                    NombreEmisor = datos[fila, 9]?.ToString(),
-                    TipoCFDI = datos[fila, 13]?.ToString(),
-                    FormaPago = datos[fila, 21]?.ToString(),
-                    Concepto = datos[fila, 24]?.ToString(),
-                    Fiscal = datos[fila, 5]?.ToString(),
-                    Estatus = datos[fila, 71]?.ToString(),
-                });
-            }
-            return tblFacturas;
+                NombreTabla = nombreTabla,
+                Encabezados = headers,
+                Datos = (object[,])tbl.DataBodyRange.Value2
+            };
         }
     }
 }

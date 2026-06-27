@@ -5,16 +5,27 @@
         WindowStartupLocation="CenterScreen"
         MinWidth="1100"
         MinHeight="700"
-        Background="#1B1C30">
+        Background="#fafafa">
 
     <Window.Resources>
-        <Style TargetType="RadioButton">
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Padding" Value="15"/>
+        <!-- ── Label ── -->
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Padding" Value="0,0,0,0"/>
+            <Setter Property="Margin" Value="0,15,25,0"/>
             <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="White"/>
+        </Style>
+        <!-- ── RadioButton ── -->
+        <Style TargetType="RadioButton">
+            <Setter Property="Margin" Value="2,3"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="#D3D1C7"/>
             <Setter Property="BorderThickness" Value="1"/>
-
+            <Setter Property="Foreground" Value="#5F5E5A"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
@@ -22,36 +33,185 @@
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="5">
-
+                            CornerRadius="4">
                             <ContentPresenter HorizontalAlignment="Center"
                                           VerticalAlignment="Center"
                                           Margin="{TemplateBinding Padding}"/>
                         </Border>
-
                         <ControlTemplate.Triggers>
-
-                            <!-- Seleccionado -->
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="Borde"
-                                    Property="Background"
-                                    Value="#0078D7"/>
-                                <Setter TargetName="Borde"
-                                    Property="BorderBrush"
-                                    Value="#005A9E"/>
+                                <Setter TargetName="Borde" Property="Background" Value="#2C2C2A"/>
+                                <Setter TargetName="Borde" Property="BorderBrush" Value="#2C2C2A"/>
+                                <Setter Property="Foreground" Value="#FFFFFF"/>
                             </Trigger>
-
-                            <!-- Hover -->
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Borde"
-                                    Property="Opacity"
-                                    Value="0.85"/>
+                                <Setter TargetName="Borde" Property="BorderBrush" Value="#888780"/>
                             </Trigger>
-
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+
+        <!-- ── Botones ── -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="Foreground" Value="#2C2C2A"/>
+            <Setter Property="BorderBrush" Value="#D3D1C7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="0,8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Borde"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Borde" Property="Background" Value="#F5F5F3"/>
+                                <Setter TargetName="Borde" Property="BorderBrush" Value="#888780"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Borde" Property="Background" Value="#EDEDEB"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ── TextBox ── -->
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="Foreground" Value="#2C2C2A"/>
+            <Setter Property="BorderBrush" Value="#D3D1C7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5,4"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Height" Value="26"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="CaretBrush" Value="#2C2C2A"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#2C2C2A"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#888780"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- ── ComboBox ── -->
+        <Style TargetType="ComboBox">
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="Foreground" Value="#2C2C2A"/>
+            <Setter Property="BorderBrush" Value="#D3D1C7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5,3"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Height" Value="26"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#2C2C2A"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#888780"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- ── Header de columna ── -->
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#2C2C2A"/>
+            <Setter Property="Foreground" Value="#B4B2A9"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+            <Setter Property="BorderBrush" Value="#444441"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#444441"/>
+                    <Setter Property="Foreground" Value="#D3D1C7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Header esquina superior izquierda (celda vacía) -->
+        <Style TargetType="DataGridRowHeader">
+            <Setter Property="Width" Value="0"/>
+        </Style>
+
+        <!-- ── Celda sin bordes ── -->
+        <Style TargetType="DataGridCell">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Padding" Value="8,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridCell">
+                        <Border Background="Transparent"
+                            BorderThickness="0"
+                            Padding="{TemplateBinding Padding}">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ── Fila compacta ── -->
+        <Style TargetType="DataGridRow">
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="Foreground" Value="#2C2C2A"/>
+            <Setter Property="MinHeight" Value="24"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F5F5F3"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#2C2C2A"/>
+                    <Setter Property="Foreground" Value="#F1EFE8"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="True"/>
+                        <Condition Property="IsKeyboardFocusWithin" Value="False"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="#444441"/>
+                    <Setter Property="Foreground" Value="#D3D1C7"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- ── DataGrid base (sin SelectionMode, va en cada control) ── -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="BorderBrush" Value="#D3D1C7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#EDEDEB"/>
+            <Setter Property="RowBackground" Value="#FFFFFF"/>
+            <Setter Property="AlternatingRowBackground" Value="#FAFAF8"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="ColumnHeaderHeight" Value="28"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="FontSize" Value="12"/>
         </Style>
     </Window.Resources>
 
@@ -71,7 +231,7 @@
                 <ColumnDefinition Width = "6*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0">
+            <Grid Grid.Column="0" Background="#f2f2f2">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -89,8 +249,13 @@
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
-                    <Button Content="Buscar" Margin= "5"/>
-                    <Button Content="Conciliar" Margin="5" Height="80"/>
+                    <Button Content="Buscar"
+                            Click="Btn_Buscar"
+                            Margin= "5"/>
+                    <Button Content="Conciliar" 
+                            Click="Btn_Conciliar"
+                            Margin="5" 
+                            Height="80"/>
                 </StackPanel>
             </Grid>
 
@@ -103,62 +268,71 @@
                     <RowDefinition Height ="4*"/>
                 </Grid.RowDefinitions>
 
-                <UniformGrid Grid.Row="0" Rows="2" Columns="4" Margin="10,10,10,0">
-                    <ComboBox x:Name="tb_Campo1" 
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <UniformGrid Rows="2" Columns="4" Margin="10,10,10,0">
+                        <ComboBox x:Name="Superior_Campo1" 
                          IsEditable="True"
-                         KeyUp="CambiosFiltros"
                          Margin="1"
                          TabIndex="0"/>
-                    <ComboBox x:Name="tb_Campo2" 
+                        <ComboBox x:Name="Superior_Campo2" 
                          IsEditable="True"
-                         KeyUp="CambiosFiltros"
                          Margin="1"
                          TabIndex="2"/>
-                    <ComboBox x:Name="tb_Campo3" 
+                        <ComboBox x:Name="Superior_Campo3" 
                          IsEditable="True"
-                         KeyUp="CambiosFiltros"
                          Margin="1"
                          TabIndex="4"/>
-                    <ComboBox x:Name="tb_Campo4" 
+                        <ComboBox x:Name="Superior_Campo4" 
                          IsEditable="True"
-                         KeyUp="CambiosFiltros"
-                         Text="Mes"
                          Margin="1"
                          TabIndex="6"/>
-                    <TextBox x:Name="tb_Valor1"
-                             TextChanged="CambiosValores"
+                        <TextBox x:Name="Superior_Valor1"
+                             TextChanged="CambiosValoresBancos"
                              Margin="1" TabIndex="1"/>
-                    <TextBox x:Name="tb_Valor2"
-                             TextChanged="CambiosValores"
+                        <TextBox x:Name="Superior_Valor2"
+                             TextChanged="CambiosValoresBancos"
                              Margin="1" TabIndex="3"/>
-                    <TextBox x:Name="tb_Valor3" 
-                             
+                        <TextBox x:Name="Superior_Valor3" 
+                             TextChanged="CambiosValoresBancos"
                              Margin="1" TabIndex="5"/>
-                    <TextBox x:Name="tb_Valor4" 
-                             
-                             Margin="1" TabIndex="7"
-                             Text="JUNIO"/>
-                </UniformGrid>
+                        <TextBox x:Name="Superior_Valor4" 
+                             TextChanged="CambiosValoresBancos"
+                             Margin="1" TabIndex="7"/>
+                    </UniformGrid>
+                    
+                    <Label Grid.Column="1" 
+                           x:Name="labelSuperior" 
+                           Content="0.00"/>
+
+                </Grid>
 
                 <DataGrid x:Name="dgBancos" Grid.Row="1" Margin="10"
-                  AutoGenerateColumns="False" IsReadOnly="True">
-
+                          AutoGenerateColumns="False" IsReadOnly="True"
+                          SelectionChanged="SumarSeleccion_DG">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Fecha"
                                     Binding="{Binding FechaOperacion, StringFormat=dd/MM/yyyy}"
-                                    Width="*"/>
+                                    Width="90"/>
                         <DataGridTextColumn Header="Concepto"
                                     Binding="{Binding Concepto}"
                                     Width="3*"/>
                         <DataGridTextColumn Header="Referencia"
                                     Binding="{Binding Referencia}"
                                     Width="2*"/>
+                        <DataGridTextColumn Header="Banco"
+                                    Binding="{Binding Banco}"
+                                    Width="*"/>
                         <DataGridTextColumn Header="Clasificacion"
                                     Binding="{Binding Clasificacion}"
                                     Width="*"/>
                         <DataGridTextColumn Header="Importe"
                                     Binding="{Binding Importe, StringFormat=N2}"
-                                    Width="*">
+                                    Width="100">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextAlignment"
@@ -170,29 +344,88 @@
 
                 </DataGrid>
 
-                <UniformGrid Grid.Row="2" Rows="2" Columns="4" Margin="10,10,10,0">
-                    <TextBox Margin="1"/>
-                    <TextBox Margin="1"/>
-                    <TextBox Margin="1"/>
-                    <TextBox Margin="1"/>
-                    <TextBox Margin="1"/>
-                    <TextBox Margin="1"/>
-                    <TextBox Margin="1"/>
-                    <TextBox Margin="1"/>
-                </UniformGrid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
 
+                    <UniformGrid Rows="2" Columns="4" Margin="10,10,10,0">
+                        <ComboBox x:Name="Inferior_Campo1" 
+                         IsEditable="True"
+                         Margin="1"
+                         TabIndex="8"/>
+                        <ComboBox x:Name="Inferior_Campo2" 
+                         IsEditable="True"
+                         Margin="1"
+                         TabIndex="10"/>
+                        <ComboBox x:Name="Inferior_Campo3" 
+                         IsEditable="True"
+                         Margin="1"
+                         TabIndex="12"/>
+                        <ComboBox x:Name="Inferior_Campo4" 
+                         IsEditable="True"
+                         Margin="1"
+                         TabIndex="14"/>
+                        <TextBox x:Name="Inferior_Valor1"
+                             TextChanged="CambiosValoresFacturas"
+                             Margin="1" TabIndex="9"/>
+                        <TextBox x:Name="Inferior_Valor2"
+                             TextChanged="CambiosValoresFacturas"
+                             Margin="1" TabIndex="11"/>
+                        <TextBox x:Name="Inferior_Valor3" 
+                             TextChanged="CambiosValoresFacturas"
+                             Margin="1" TabIndex="13"/>
+                        <TextBox x:Name="Inferior_Valor4" 
+                             TextChanged="CambiosValoresFacturas"
+                             Margin="1" TabIndex="15"/>
+                    </UniformGrid>
 
-                <ListView x:Name="dgFacturas"  Grid.Row="3" Margin="10">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Fecha" Width="60"/>
-                            <GridViewColumn Header="Concepto" Width="200"/>
-                            <GridViewColumn Header="Referencia" Width="200"/>
-                            <GridViewColumn Header="Importe" Width="100"/>
-                            <GridViewColumn Header="Clasificacion" Width="150"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                    <Label Grid.Column="1" 
+                           x:Name="labelInferior" 
+                           Content="0.00"/>
+
+                </Grid>
+                
+                <DataGrid x:Name="dgFacturas" Grid.Row="3" Margin="10"
+                          AutoGenerateColumns="False" IsReadOnly="True"
+                          SelectionChanged="SumarSeleccion_DG">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Fecha"
+                                            Binding="{Binding FechaCFDI, StringFormat=dd/MM/yyyy}"
+                                            Width="90"/>
+                        <DataGridTextColumn Header="Serie y Folio" 
+                                            Binding="{Binding SerieFolioInterno}"
+                                            Width="*"/>
+                        <DataGridTextColumn Header="Proveedor"
+                                            Binding="{Binding NombreEmisor}"
+                                            Width="2*"/>
+                        <DataGridTextColumn Header="Metodo de Pago"
+                                            Binding="{Binding FormaPago}"
+                                            Width="40">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextAlignment"
+                                            Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Concepto"
+                                            Binding="{Binding Concepto}"
+                                            Width="2*"/>
+                        <DataGridTextColumn Header="Total"
+                                            Binding="{Binding TotalCFDI, StringFormat=N2}"
+                                            Width="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextAlignment"
+                                            Value="Right"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
             </Grid>
         </Grid>
     </Grid>

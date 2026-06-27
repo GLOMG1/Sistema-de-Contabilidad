@@ -9,6 +9,7 @@ namespace Contabilidad.Modelos
     public class ClassFacturas
     {
         // Identificadores y control
+        public int filaTabla {  get; set; }
         public int IdRegistroBD { get; set; }
         public string Fiscal { get; set; }
         public string Sublibro { get; set; }
