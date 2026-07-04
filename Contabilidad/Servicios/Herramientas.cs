@@ -85,7 +85,7 @@ namespace Contabilidad.Servicios
                         fila[columna["Descuento Sin IVA"] - 1] = imp[7];
                         fila[columna["SUBTOTAL CFDI"] - 1] = "";
                         fila[columna["IVA CFDI"] - 1] = imp[9];
-                        fila[columna["ISH CFDI"] - 1] = imp[10];
+                        //fila[columna["ISH CFDI"] - 1] = imp[10];
                         fila[columna["ISR Retenido CFDI"] - 1] = imp[11];
                         fila[columna["IVA Retenido CFDI"] - 1] = imp[12];
                         fila[columna["TOTAL CFDI"] - 1] = factura.Comprobante.Total;

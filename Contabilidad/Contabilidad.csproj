@@ -214,6 +214,9 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="Formularios\ConfiguracionLecturaFacturas.xaml.cs">
+      <DependentUpon>ConfiguracionLecturaFacturas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Principal.xaml.cs">
       <DependentUpon>Principal.xaml</DependentUpon>
     </Compile>
@@ -282,6 +285,10 @@
     <EmbeddedResource Include="Ribbon1.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Formularios\ConfiguracionLecturaFacturas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Formularios\Principal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

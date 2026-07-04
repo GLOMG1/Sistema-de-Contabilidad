@@ -38,6 +38,10 @@ namespace Contabilidad
         {
             this.ribbon = ribbonUI;
         }
+        public void Refrescar()
+        {
+            ribbon?.Invalidate();
+        }
         public Bitmap GetImage(Office.IRibbonControl control)
         {
             switch(control.Id)
@@ -72,6 +76,12 @@ namespace Contabilidad
             var ventana = new Formularios.VentanaConciliacion();
             ventana.ShowDialog();
         }
+
+        public void btnConfiguraciones(Office.IRibbonControl control)
+        {
+            var ventana = new Formularios.ConfiguracionLecturaFacturas();
+            ventana.ShowDialog();
+        }
         public void btnImportar(Office.IRibbonControl control)
         {
             Excel_Function x = new Excel_Function();
@@ -85,6 +95,10 @@ namespace Contabilidad
         {
             Excel_Function x = new Excel_Function();
             x.FuncionDePrueba();
+        }
+        public bool ValidarLibro_GetEnabled(Office.IRibbonControl control)
+        {
+            return Globals.ThisAddIn.VerificacionLibro();
         }
         #endregion
 

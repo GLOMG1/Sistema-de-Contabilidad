@@ -25,36 +25,46 @@
 				<button label="Importar"
 						id="btnImportar"
 						onAction="btnImportar"
+						getEnabled="ValidarLibro_GetEnabled"
 						getImage="GetImage"
 						size="large"/>
 				<button label="Guardar en Base de Datos"
 						id="btnGuardarBD"
+						getEnabled="ValidarLibro_GetEnabled"
 						getImage="GetImage"
 						size="large"/>
 				<separator id="Separador02"/>
 				<button label="Confuguraciones de lectura"
-						id="btnConfiguracionFacturas"/>
+						id="btnConfiguracionFacturas"
+						onAction="btnConfiguraciones"
+						getEnabled="ValidarLibro_GetEnabled"/>
 				<button label ="Reportes"
-						id="btnReportes"/>
+						id="btnReportes"
+						getEnabled="ValidarLibro_GetEnabled"/>
 				<button label="Descargas"
 						id="btnDescargasSAT"
-						onAction="btonPruebas"/>
+						onAction="btonPruebas"
+						getEnabled="ValidarLibro_GetEnabled"/>
 			</group>
 			<group id="grpProveedores" label="Proveedores">
 				<button label="Proveedores"
-						id="btnProveedores"/>
+						id="btnProveedores"
+						getEnabled="ValidarLibro_GetEnabled"/>
 				<button label="Acreedores"
-						id="btnAcreedores"/>
+						id="btnAcreedores"
+						getEnabled="ValidarLibro_GetEnabled"/>
 			</group>
 
 			<group id="grpBancos" label="Bancos">
 				<button label ="Importar Estado de Cuenta"
 						id ="btnImportarEC"
+						getEnabled="ValidarLibro_GetEnabled"
 						getImage="GetImage"
 						size ="large"/>
 				<button label ="Conciliar"
 						id="btnConciliar"
 						onAction="btnConciliar"
+						getEnabled="ValidarLibro_GetEnabled"
 						getImage="GetImage"
 						size ="large"/>
 			</group>

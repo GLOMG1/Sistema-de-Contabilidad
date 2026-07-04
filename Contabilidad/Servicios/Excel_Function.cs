@@ -103,7 +103,7 @@ namespace Contabilidad.Servicios
             Excel.ListObject tbl;
             try
             {
-                tbl = sheet.ListObjects["tblEgresos"];
+                tbl = sheet.ListObjects["TblFactEgresos"];
             }
             catch
             {

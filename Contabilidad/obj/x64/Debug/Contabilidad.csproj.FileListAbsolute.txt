@@ -100,3 +100,5 @@ C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Contabi
 C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Contabil.C4C2654C.Up2Date
 C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Contabilidad.dll
 C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Contabilidad.pdb
+C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Formularios\ConfiguracionLecturaFacturas.g.cs
+C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Formularios\ConfiguracionLecturaFacturas.baml

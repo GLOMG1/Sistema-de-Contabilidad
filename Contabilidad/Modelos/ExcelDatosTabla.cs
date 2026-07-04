@@ -18,7 +18,10 @@ namespace Contabilidad.Modelos
         public object GetValor(int fila, string nombreColumna)
         {
             int col = Encabezados.IndexOf(nombreColumna);
-            if (col == -1) throw new ArgumentException($"Columna '{nombreColumna}' no encontrada.");
+            if (col == -1)
+            {
+                throw new ArgumentException($"Columna '{nombreColumna}' no encontrada.");
+            }
             return Datos[fila, col + 1]; // +1 porque el array es base 1
         }
     }

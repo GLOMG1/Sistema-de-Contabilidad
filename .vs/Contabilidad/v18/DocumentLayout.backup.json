@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|c:\\users\\contabilidad\\sistema-de-contabilidad\\contabilidad\\formularios\\ventanaconciliacion.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|solutionrelative:contabilidad\\formularios\\ventanaconciliacion.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\contabilidad\\formularios\\ventanaconciliacion.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|solutionrelative:contabilidad\\formularios\\ventanaconciliacion.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\contabilidad\\modelos\\exceldatostabla.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|solutionrelative:contabilidad\\modelos\\exceldatostabla.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\contabilidad\\servicios\\excel_function.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|solutionrelative:contabilidad\\servicios\\excel_function.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|c:\\users\\contabilidad\\sistema-de-contabilidad\\contabilidad\\formularios\\configuracionlecturafacturas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|solutionrelative:contabilidad\\formularios\\configuracionlecturafacturas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +14,18 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Excel_Function.cs",
-              "DocumentMoniker": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Servicios\\Excel_Function.cs",
-              "RelativeDocumentMoniker": "Contabilidad\\Servicios\\Excel_Function.cs",
-              "ToolTip": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Servicios\\Excel_Function.cs",
-              "RelativeToolTip": "Contabilidad\\Servicios\\Excel_Function.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAYwKUAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-09T18:41:28.907Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ExcelDatosTabla.cs",
-              "DocumentMoniker": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Modelos\\ExcelDatosTabla.cs",
-              "RelativeDocumentMoniker": "Contabilidad\\Modelos\\ExcelDatosTabla.cs",
-              "ToolTip": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Modelos\\ExcelDatosTabla.cs",
-              "RelativeToolTip": "Contabilidad\\Modelos\\ExcelDatosTabla.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-27T00:17:39.691Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "VentanaConciliacion.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Formularios\\VentanaConciliacion.xaml.cs",
-              "RelativeDocumentMoniker": "Contabilidad\\Formularios\\VentanaConciliacion.xaml.cs",
-              "ToolTip": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Formularios\\VentanaConciliacion.xaml.cs",
-              "RelativeToolTip": "Contabilidad\\Formularios\\VentanaConciliacion.xaml.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAIwFoAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-25T22:23:31.053Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "VentanaConciliacion.xaml",
-              "DocumentMoniker": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Formularios\\VentanaConciliacion.xaml",
-              "RelativeDocumentMoniker": "Contabilidad\\Formularios\\VentanaConciliacion.xaml",
-              "ToolTip": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Formularios\\VentanaConciliacion.xaml",
-              "RelativeToolTip": "Contabilidad\\Formularios\\VentanaConciliacion.xaml",
+              "Title": "ConfiguracionLecturaFacturas.xaml",
+              "DocumentMoniker": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Formularios\\ConfiguracionLecturaFacturas.xaml",
+              "RelativeDocumentMoniker": "Contabilidad\\Formularios\\ConfiguracionLecturaFacturas.xaml",
+              "ToolTip": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Formularios\\ConfiguracionLecturaFacturas.xaml",
+              "RelativeToolTip": "Contabilidad\\Formularios\\ConfiguracionLecturaFacturas.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-06-24T18:40:19.025Z",
+              "WhenOpened": "2026-07-04T15:40:33.252Z",
               "EditorCaption": ""
             }
           ]

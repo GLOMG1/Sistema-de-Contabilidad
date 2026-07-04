@@ -10,11 +10,11 @@ none
 false
 VSTO40;DEBUG;TRACE
 
-254966948
+31186166269
 31361529145
-17-1846753815
+18-89117132
 44-805109651
-Formularios\Principal.xaml;Formularios\VentanaConciliacion.xaml;
+Formularios\ConfiguracionLecturaFacturas.xaml;Formularios\Principal.xaml;Formularios\VentanaConciliacion.xaml;
 
-False
+True
 
