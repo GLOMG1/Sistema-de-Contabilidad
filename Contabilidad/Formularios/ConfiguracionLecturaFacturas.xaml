@@ -24,9 +24,7 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Border x:Name="Border"
                                 Background="{DynamicResource ColorPrincipal}"
-                                BorderBrush="{DynamicResource ColorPrincipal}"
-                                BorderThickness="1"
-                                CornerRadius="5">
+                                BorderBrush="{DynamicResource ColorPrincipal}">
                             <ContentPresenter 
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -76,17 +74,23 @@
             <Grid Grid.Column="0" x:Name="BarraOpciones">
                 <StackPanel VerticalAlignment="Center">
                     <RadioButton Content="Vistas"
-                                 GroupName="MenuFacturas"/>
+                                 GroupName="MenuFacturas"
+                                 Checked="MenuOpcion_Checked"
+                                 Tag="Vistas"/>
                     <RadioButton Content="Reglas"
-                                 GroupName="MenuFacturas"/>
+                                 GroupName="MenuFacturas"
+                                 Checked="MenuOpcion_Checked"
+                                 Tag="Reglas"/>
                     <RadioButton Content="Catalogos"
-                                 GroupName="MenuFacturas"/>
+                                 GroupName="MenuFacturas"
+                                 Checked="MenuOpcion_Checked"
+                                 Tag="Catalogos"/>
                     <RadioButton Content="General"
                                  GroupName="MenuFacturas"/>
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="1" Background="{DynamicResource ColorElevado}">
-                
+                <ContentControl x:Name="PanelContenido"/>
             </Grid>
         </Grid>
             

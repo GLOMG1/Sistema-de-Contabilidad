@@ -62,13 +62,14 @@
         <Grid x:Name="panelAltaClientes" 
               Grid.Row="1"
               Margin="15,30,15,20"
-              Visibility="Collapsed">
+              Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -110,7 +111,7 @@
             <Button x:Name="btnAgregarCliente"
                     Content="Insertar"
                     Click="AgregarCliente_Click"
-                    Grid.Row="3"
+                    Grid.Row="4"
                     Grid.ColumnSpan="2"
                     Margin="100,15,100, 0">
                 

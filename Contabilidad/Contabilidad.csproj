@@ -217,6 +217,15 @@
     <Compile Include="Formularios\ConfiguracionLecturaFacturas.xaml.cs">
       <DependentUpon>ConfiguracionLecturaFacturas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\ConfiguracionLecturaFact\CatalogosUserControl.xaml.cs">
+      <DependentUpon>CatalogosUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ConfiguracionLecturaFact\ReglasUserControl.xaml.cs">
+      <DependentUpon>ReglasUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ConfiguracionLecturaFact\VistasUserControl.xaml.cs">
+      <DependentUpon>VistasUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Principal.xaml.cs">
       <DependentUpon>Principal.xaml</DependentUpon>
     </Compile>
@@ -227,6 +236,7 @@
     <Compile Include="Modelos\ClassFacturas.cs" />
     <Compile Include="Modelos\ExcelDatosTabla.cs" />
     <Compile Include="Modelos\Factura.cs" />
+    <Compile Include="Modelos\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -255,6 +265,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Ribbon1.cs" />
+    <Compile Include="Servicios\SQL\ConexionDb.cs" />
+    <Compile Include="Servicios\SQL\InicioRepositorio.cs" />
     <Compile Include="Servicios\SQL_Functions.cs" />
     <Compile Include="Servicios\Herramientas.cs" />
     <Compile Include="Servicios\xml_Function.cs" />
@@ -270,9 +282,6 @@
     <None Include="Resources\Balance.png" />
     <None Include="Resources\Evento Economico.png" />
     <None Include="Resources\SAT.png" />
-    <Content Include="Servicios\Utilerias\PapelesDeTrabajo.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
     </None>
@@ -286,6 +295,18 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Formularios\ConfiguracionLecturaFacturas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Formularios\ConfiguracionLecturaFact\CatalogosUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Formularios\ConfiguracionLecturaFact\ReglasUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Formularios\ConfiguracionLecturaFact\VistasUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

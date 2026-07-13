@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Contabilidad.Formularios.ConfiguracionLecturaFact;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,24 @@ namespace Contabilidad.Formularios
     /// </summary>
     public partial class ConfiguracionLecturaFacturas : Window
     {
+        private Dictionary<string, UserControl> _vistas;
         public ConfiguracionLecturaFacturas()
         {
             InitializeComponent();
+
+            _vistas = new Dictionary<string, UserControl>
+            {
+                ["Vistas"] = new VistasUserControl(),
+                ["Reglas"] = new ReglasUserControl(),
+                ["Catalogos"] = new CatalogosUserControl(),
+            };
+        }
+
+        private void MenuOpcion_Checked(object sender, RoutedEventArgs e)
+        {
+            var tag = (sender as RadioButton)?.Tag as string;
+            if (tag != null && _vistas.TryGetValue(tag, out var vista))
+                PanelContenido.Content = vista;
         }
     }
 }

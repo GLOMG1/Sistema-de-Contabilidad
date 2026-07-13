@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -14,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Contabilidad.Servicios;
 using System.Collections.ObjectModel;
+using Contabilidad.Servicios.SQL;
 
 namespace Contabilidad.Formularios
 {
@@ -21,12 +23,15 @@ namespace Contabilidad.Formularios
     {
         public ObservableCollection<Contribuyentes> listClientes { get; set; }
         public Contribuyentes clienteSeleccionado { get; set; }
+
+        private InicioRepositorio _db;
         public Principal()
         {
             InitializeComponent();
-            DbContabilidad.Iniciar();
 
-            var lista = DbContabilidad.Consultar();
+            _db = new InicioRepositorio();
+
+            var lista = _db.Consultar();
             listClientes = new ObservableCollection<Contribuyentes>(lista);
 
             this.DataContext = this;
@@ -43,9 +48,7 @@ namespace Contabilidad.Formularios
                 panelClientes.Visibility = Visibility.Visible;
                 panelAltaClientes.Visibility = Visibility.Collapsed;
             }
-
         }
-
         private void AgregarCliente_Click(object sender, RoutedEventArgs e)
         {
             string nombre = txtNombre.Text;
@@ -58,20 +61,18 @@ namespace Contabilidad.Formularios
             }
             else
             {
-                DbContabilidad.Insertar(nombre, rfc, regimen);
+                _db.Insertar(nombre, rfc, regimen);
             }
         }
-
         private void Leer_Click(object sender, RoutedEventArgs e)
         {
-            var lista = DbContabilidad.Consultar();
+            var lista = _db.Consultar();
 
             foreach (var c in lista)
             {
                 MessageBox.Show($"{c.Id} - {c.Nombre} - {c.Rfc}");
             }
         }
-
         private void Iniciar_DobleClick(object sender, MouseButtonEventArgs e)
         {
             Excel_Function x = new Excel_Function();

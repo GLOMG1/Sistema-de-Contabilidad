@@ -6,6 +6,9 @@ using System.Xml.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
+using Contabilidad.Servicios;
+using Contabilidad.Servicios.SQL;
+using System.Windows;
 
 namespace Contabilidad
 {
@@ -20,6 +23,8 @@ namespace Contabilidad
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             this.Application.WorkbookActivate += Application_WorkbookActivate;
+
+            ConexionDb.Iniciar();
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

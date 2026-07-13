@@ -1,68 +1,26 @@
-﻿using System;
-using System.IO;
+﻿using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Data.Sqlite;
 using System.Windows;
 
-namespace Contabilidad.Servicios
+namespace Contabilidad.Servicios.SQL
 {
-    public class Contribuyentes
+    internal class InicioRepositorio
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Rfc { get; set; }
-        public int Regimen { get; set; }
-    }
-
-    public class DbContabilidad
-    {
-        private readonly string carpetaDatos = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "Contabilidad");
-        private string connectionString;
-
-        public void Iniciar()
-        {
-            if(!Directory.Exists(carpetaDatos))
-                Directory.CreateDirectory(carpetaDatos);
-            string rutaDd = Path.Combine(carpetaDatos, "dbContabilidad.db");
-
-            connectionString = $"Data Source={rutaDd}";
-
-            SQLitePCL.Batteries.Init();
-
-            using (var connection = new SqliteConnection(connectionString))
-            {
-                connection.Open();
-
-                var command = connection.CreateCommand();
-                command.CommandText =
-                @"
-                CREATE TABLE IF NOT EXISTS Contribuyentes (
-                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Nombre TEXT NOT NULL,
-                    Rfc TEXT NOT NULL UNIQUE,
-                    Regimen INTEGER NOT NULL
-                );";
-
-                command.ExecuteNonQuery();
-            }
-        }
         public void Insertar(string Nombre, string Rfc, int Regimen)
         {
             try
-            { 
-                using (var connection = new SqliteConnection(connectionString))
+            {
+                using (var connection = ConexionDb.ObtenerConexion())
                 {
-                    connection.Open();
 
                     using (var command = connection.CreateCommand())
                     {
-                    command.CommandText =
-                        @"
+                        command.CommandText =
+                            @"
                         INSERT INTO Contribuyentes (Nombre, Rfc, Regimen)
                         VALUES ($Nombre, $Rfc, $Regimen)";
 
@@ -89,9 +47,8 @@ namespace Contabilidad.Servicios
         public List<Contribuyentes> Consultar()
         {
             var lista = new List<Contribuyentes>();
-            using (var connection = new SqliteConnection(connectionString))
+            using (var connection = ConexionDb.ObtenerConexion())
             {
-                connection.Open();
 
                 using (var command = connection.CreateCommand())
                 {

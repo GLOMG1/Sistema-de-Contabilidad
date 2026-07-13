@@ -50,7 +50,6 @@ C:\Users\Jaime\source\repos\Contabilidad\Contabilidad\obj\x64\Debug\Formularios\
 C:\Users\Jaime\source\repos\Contabilidad\Contabilidad\obj\x64\Debug\Formularios\VentanaConciliacion.g.cs
 C:\Users\Jaime\source\repos\Contabilidad\Contabilidad\bin\x64\Debug\Data\Configuracion.json
 C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\bin\x64\Debug\Data\Configuracion.json
-C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\bin\x64\Debug\Servicios\Utilerias\PapelesDeTrabajo.json
 C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\bin\x64\Debug\e_sqlite3.dll
 C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\bin\x64\Debug\Contabilidad.dll.config
 C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\bin\x64\Debug\Contabilidad.dll
@@ -102,3 +101,9 @@ C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Contabi
 C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Contabilidad.pdb
 C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Formularios\ConfiguracionLecturaFacturas.g.cs
 C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Formularios\ConfiguracionLecturaFacturas.baml
+C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Formularios\ConfiguracionLecturaFact\ReglasUserControl.g.cs
+C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Formularios\ConfiguracionLecturaFact\VistasUserControl.g.cs
+C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Formularios\ConfiguracionLecturaFact\ReglasUserControl.baml
+C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Formularios\ConfiguracionLecturaFact\VistasUserControl.baml
+C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Formularios\ConfiguracionLecturaFact\CatalogosUserControl.g.cs
+C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Formularios\ConfiguracionLecturaFact\CatalogosUserControl.baml
