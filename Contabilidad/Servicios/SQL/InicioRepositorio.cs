@@ -1,10 +1,12 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using Contabilidad.Modelos;
+using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Markup;
 
 namespace Contabilidad.Servicios.SQL
 {
@@ -44,6 +46,18 @@ namespace Contabilidad.Servicios.SQL
                 }
             }
         }
+        public void Eliminar(int id)
+        {
+            using(var coneccion = ConexionDb.ObtenerConexion())
+            {
+                using(var comando = coneccion.CreateCommand())
+                {
+                    comando.CommandText = "DELETE FROM Contribuyentes WHERE Id = @id;";
+                    comando.Parameters.AddWithValue("@id", id);
+                    comando.ExecuteNonQuery();
+                }
+            }
+        }
         public List<Contribuyentes> Consultar()
         {
             var lista = new List<Contribuyentes>();
@@ -69,6 +83,35 @@ namespace Contabilidad.Servicios.SQL
                 }
             }
             return lista;
+        }
+        public Usuario UsuarioActivo()
+        {
+            Usuario login = null;
+
+            using (var coneccion = ConexionDb.ObtenerConexion())
+            {
+                using (var comando = coneccion.CreateCommand())
+                {
+                    comando.CommandText = "SELECT Nombre, Puesto, ColorPrincipal, ColorSecundario, ColorAcento, ColorElevado FROM Usuarios LIMIT 1;";
+                    using(var lector = comando.ExecuteReader())
+                    {
+                        if (lector.Read())
+                        {
+                            login = new Usuario
+                            {
+                                Nombre = lector.GetString(0),
+                                Puesto = lector.GetString(1),
+                                ColorPrincipal = lector.GetString(2),
+                                ColorSecundario = lector.GetString(3),
+                                ColorAcento = lector.GetString(4),
+                                ColorElevado = lector.GetString(5),
+                            };
+                        }
+                    }
+                }
+            }
+
+            return login;
         }
     }
 }

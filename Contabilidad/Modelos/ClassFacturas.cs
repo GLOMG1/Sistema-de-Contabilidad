@@ -22,6 +22,8 @@ namespace Contabilidad.Modelos
         public string TipoCFDI { get; set; }
         public string UsoCFDI { get; set; }
         public string FolioUUID { get; set; }
+        public string RelacionNC { get; set; }
+        public string RelacionREP { get; set; }
         public string FormaPago { get; set; }
         public string MetodoPago { get; set; }
         public string Concepto { get; set; }

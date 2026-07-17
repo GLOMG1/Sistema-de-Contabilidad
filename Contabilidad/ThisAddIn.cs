@@ -9,12 +9,14 @@ using Microsoft.Office.Tools.Excel;
 using Contabilidad.Servicios;
 using Contabilidad.Servicios.SQL;
 using System.Windows;
+using Contabilidad.Modelos;
 
 namespace Contabilidad
 {
     public partial class ThisAddIn
     {
         private Ribbon1 RibbonConta;
+        public Usuario UsuarioActivo {  get; set; }
         protected override Microsoft.Office.Core.IRibbonExtensibility CreateRibbonExtensibilityObject()
         {
             RibbonConta = new Ribbon1();
@@ -23,7 +25,7 @@ namespace Contabilidad
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             this.Application.WorkbookActivate += Application_WorkbookActivate;
-
+            
             ConexionDb.Iniciar();
         }
 

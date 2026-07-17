@@ -251,11 +251,16 @@
                 <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
                     <Button Content="Buscar"
                             Click="Btn_Buscar"
-                            Margin= "5"/>
+                            Margin= "5"
+                            Height="50"/>
                     <Button Content="Conciliar" 
                             Click="Btn_Conciliar"
                             Margin="5" 
-                            Height="80"/>
+                            Height="100"/>
+                    <Button Content="Generar cheque"
+                            Click="Btn_GenerarCheque"
+                            Margin="5"
+                            Height="50"/>
                 </StackPanel>
             </Grid>
 

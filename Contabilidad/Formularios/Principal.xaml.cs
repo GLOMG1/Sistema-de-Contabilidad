@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -16,6 +15,7 @@ using System.Windows.Shapes;
 using Contabilidad.Servicios;
 using System.Collections.ObjectModel;
 using Contabilidad.Servicios.SQL;
+using Contabilidad.Modelos;
 
 namespace Contabilidad.Formularios
 {
@@ -23,13 +23,16 @@ namespace Contabilidad.Formularios
     {
         public ObservableCollection<Contribuyentes> listClientes { get; set; }
         public Contribuyentes clienteSeleccionado { get; set; }
-
+        private Usuario UsuarioActivo { get; set; }
         private InicioRepositorio _db;
         public Principal()
         {
             InitializeComponent();
 
             _db = new InicioRepositorio();
+
+            UsuarioActivo = _db.UsuarioActivo();
+            AplicarTema(UsuarioActivo);
 
             var lista = _db.Consultar();
             listClientes = new ObservableCollection<Contribuyentes>(lista);
@@ -73,11 +76,43 @@ namespace Contabilidad.Formularios
                 MessageBox.Show($"{c.Id} - {c.Nombre} - {c.Rfc}");
             }
         }
+        private void EliminarRegistro_Click(object sender, RoutedEventArgs e)
+        {
+            if(clienteSeleccionado == null)
+            {
+                MessageBox.Show("Se necesita tener un contribuente seleccionado");
+                return;
+            }
+
+            MessageBoxResult resultado = MessageBox.Show(
+                string.Format("¿Estas seguro de querer eliminar a {0}?", clienteSeleccionado.Nombre),
+                "Confirmar eliminacion",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Exclamation);
+
+            if(resultado == MessageBoxResult.Yes)
+                _db.Eliminar(clienteSeleccionado.Id);
+        }
         private void Iniciar_DobleClick(object sender, MouseButtonEventArgs e)
         {
             Excel_Function x = new Excel_Function();
             x.CrearTabla(clienteSeleccionado);
             this.Close();
+        }
+        private void AplicarTema(Usuario us)
+        {
+            if (us == null)
+                return;
+
+            this.Resources["ColorPrincipal"] = 
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString(UsuarioActivo.ColorPrincipal));
+            this.Resources["ColorSecundario"] =
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString(UsuarioActivo.ColorSecundario));
+            this.Resources["ColorAcento"] =
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString(UsuarioActivo.ColorAcento));
+            this.Resources["ColorElevado"] =
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString(UsuarioActivo.ColorElevado));
+
         }
     }
 }

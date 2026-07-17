@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Contabilidad.Modelos
 {
-    internal class Usuario
+    public class Usuario
     {
-        string Nombre { get; set; }
-        string Puesto { get; set; }
-        string ColorPrincipal { get; set; }
-        string ColorSecundario { get; set; }
-        string ColorAcento { get; set; }
-        string ColorElevado { get; set; }
+        public string Nombre { get; set; }
+        public string Puesto { get; set; }
+        public string ColorPrincipal { get; set; }
+        public string ColorSecundario { get; set; }
+        public string ColorAcento { get; set; }
+        public string ColorElevado { get; set; }
     }
 }

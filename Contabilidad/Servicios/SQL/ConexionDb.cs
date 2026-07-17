@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using Contabilidad.Modelos;
+using Microsoft.Data.Sqlite;
 using Microsoft.Office.Core;
 using System;
 using System.Collections.Generic;

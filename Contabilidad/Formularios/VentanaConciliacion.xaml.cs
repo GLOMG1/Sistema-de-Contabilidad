@@ -125,7 +125,17 @@ namespace Contabilidad.Formularios
             string Banco = string.Join("; ", filasBancos.Select(f => f.Banco).Distinct());
             string NumeroCuenta = string.Join("; ", filasBancos.Select(f => f.NumCuenta).Distinct());
 
-            foreach(ClassFacturas f in filasFacturas)
+            /// tabla Bancos
+
+            string SerieFolioInternoCFDI = string.Join("; ", filasFacturas.Select(b => b.SerieFolioInterno).Distinct()) + "; ";
+            string FechaCFDI = string.Join("; ", filasFacturas.Select(b => b.FechaCFDI.ToString("dd/MM/yyyy")).Distinct()) + "; ";
+            string FolioUUIDCFDI = string.Join("; ", filasFacturas.Select(b => b.FolioUUID).Distinct()) + "; ";
+            string NombreEmisorReceptorCFDI = string.Join("; ", filasFacturas.Select(b => b.NombreEmisor).Distinct()) + "; ";
+
+            /// aplicar formato a las facturas PPD:
+            filasFacturas = busquedaComplementos(filasFacturas, nombreTabla);
+
+            foreach (ClassFacturas f in filasFacturas)
             {
                 excel.EscribirDatos(nombreTabla, f.filaTabla, "Id Registro Bancos", IdRegistroBancos);
                 excel.EscribirDatos(nombreTabla, f.filaTabla, "Fecha Bancos", FechaBancos);
@@ -133,11 +143,6 @@ namespace Contabilidad.Formularios
                 excel.EscribirDatos(nombreTabla, f.filaTabla, "Banco", Banco);
                 excel.EscribirDatos(nombreTabla, f.filaTabla, "Num Cuenta", NumeroCuenta);
             }
-
-            string SerieFolioInternoCFDI = string.Join("; ", filasFacturas.Select(b => b.SerieFolioInterno).Distinct()) + "; ";
-            string FechaCFDI = string.Join("; ", filasFacturas.Select(b => b.FechaCFDI.ToString("dd/MM/yyyy")).Distinct()) + "; ";
-            string FolioUUIDCFDI = string.Join("; ", filasFacturas.Select(b => b.FolioUUID).Distinct()) + "; ";
-            string NombreEmisorReceptorCFDI = string.Join("; ", filasFacturas.Select(b => b.NombreEmisor).Distinct()) + "; ";
 
             foreach(ClassBancos b in filasBancos)
             {
@@ -165,6 +170,23 @@ namespace Contabilidad.Formularios
 
             labelInferior.Content = "0.00";
             labelSuperior.Content = "0.00";
+        }
+        public void Btn_GenerarCheque(object sender, RoutedEventArgs e)
+        {
+            if (rb_E.IsChecked == false)
+                return;
+
+            List<ClassFacturas> filasFacturas = dgFacturas.SelectedItems.Cast<ClassFacturas>().ToList();
+
+            foreach(ClassFacturas f in filasFacturas)
+            {
+                excel.EscribirDatos("TblFactEgresos", f.filaTabla, "Folio Bancos", "CH-0000000");
+                excel.EscribirDatos("TblFactEgresos", f.filaTabla, "Estatus", "CONCILIADO");
+            }
+
+            tablaEgresos = excel.ObtenerTabla("TblFactEgresos");
+            dgFacturas.ItemsSource = CrearDataGridFacturas(tablaEgresos);
+            labelInferior.Content = "0.00";
         }
         public void SumarSeleccion_DG(object sender, SelectionChangedEventArgs e)
         {
@@ -268,6 +290,8 @@ namespace Contabilidad.Formularios
                     filaTabla = fila,
                     FechaCFDI = DateTime.FromOADate(Convert.ToDouble(tabla.GetValor(fila, "Fecha CFDI"))),
                     FolioUUID = tabla.GetValor(fila, "Folio UUID CFDI")?.ToString(),
+                    RelacionNC = tabla.GetValor(fila, "Folio UUID CFDI Relacionado NC")?.ToString(),
+                    RelacionREP = tabla.GetValor(fila, "Folio UUID CFDI Relacionado REP")?.ToString(),
                     SerieFolioInterno = tabla.GetValor(fila, "Serie Folio Interno CFDI")?.ToString(),
                     RfcEmisor = tabla.GetValor(fila, "RFC Emisor CFDI")?.ToString(),
                     NombreEmisor = tabla.NombreTabla == "TblFactEgresos" ? tabla.GetValor(fila, "Nombre Emisor CFDI")?.ToString() : tabla.GetValor(fila, "Nombre Receptor CFDI")?.ToString(),
@@ -436,6 +460,42 @@ namespace Contabilidad.Formularios
                 dgBancos.ItemsSource = CrearDataGridBancos(tablaBancos, true);
             }
             timerBancos.Stop();
+        }
+        private List<ClassFacturas> busquedaComplementos(List<ClassFacturas> facturas, string nombretabla)
+        {
+            ExcelDatosTabla tbl;
+            if(nombretabla == "TblFactEgresos")
+            {
+                tbl = tablaEgresos;
+            }
+            else
+            {
+                tbl = tablaIngresos;
+            }
+            
+            string UUID;
+            int n = facturas.Count;
+            for(int i = 0; i < n; i++)
+            {
+                if (!string.IsNullOrEmpty(facturas[i].RelacionREP) &&
+                    facturas[i].RelacionREP.StartsWith("CFDI: "))
+                {
+                    UUID = facturas[i].RelacionREP.Substring(6, 36);
+                    int fila = 1;
+                    while (fila <= tbl.NumFilas)
+                    {
+                        if(UUID == tbl.GetValor(fila, "Folio UUID CFDI").ToString())
+                        {
+                            facturas.Add(new ClassFacturas
+                            {
+                                filaTabla = fila,
+                            });
+                        }
+                        fila ++;
+                    }
+                }
+            }
+            return facturas;
         }
     }
 }

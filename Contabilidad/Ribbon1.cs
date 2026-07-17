@@ -76,7 +76,6 @@ namespace Contabilidad
             var ventana = new Formularios.VentanaConciliacion();
             ventana.ShowDialog();
         }
-
         public void btnConfiguraciones(Office.IRibbonControl control)
         {
             var ventana = new Formularios.ConfiguracionLecturaFacturas();

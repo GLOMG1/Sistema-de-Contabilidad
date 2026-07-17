@@ -175,7 +175,7 @@ namespace Contabilidad.Servicios
 
             var tbl = hoja.ListObjects[nombreTabla];
             var columnaExcel = tbl.ListColumns[columna];
-            columnaExcel.DataBodyRange[numFila] = valor; 
+            columnaExcel.DataBodyRange[numFila] = valor;
         }
         private void FuncionesExcel(bool interruptor)
         {
