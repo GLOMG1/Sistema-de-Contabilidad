@@ -175,7 +175,16 @@ namespace Contabilidad.Servicios
 
             var tbl = hoja.ListObjects[nombreTabla];
             var columnaExcel = tbl.ListColumns[columna];
-            columnaExcel.DataBodyRange[numFila] = valor;
+
+            Excel.Range celda = (Excel.Range)columnaExcel.DataBodyRange[numFila];
+            string valoractual = celda.Value2?.ToString() ?? string.Empty;
+
+            if (valoractual == valor)
+                return;
+
+            celda.Value2 = string.IsNullOrEmpty(valoractual)
+                ? valor
+                : $"{valoractual}{valor}";
         }
         private void FuncionesExcel(bool interruptor)
         {

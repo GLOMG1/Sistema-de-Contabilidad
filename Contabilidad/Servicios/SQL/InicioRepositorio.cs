@@ -10,9 +10,9 @@ using System.Windows.Markup;
 
 namespace Contabilidad.Servicios.SQL
 {
-    internal class InicioRepositorio
+    public static class InicioRepositorio
     {
-        public void Insertar(string Nombre, string Rfc, int Regimen)
+        public static void Insertar(string Nombre, string Rfc, int Regimen)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace Contabilidad.Servicios.SQL
                 }
             }
         }
-        public void Eliminar(int id)
+        public static void Eliminar(int id)
         {
             using(var coneccion = ConexionDb.ObtenerConexion())
             {
@@ -58,7 +58,7 @@ namespace Contabilidad.Servicios.SQL
                 }
             }
         }
-        public List<Contribuyentes> Consultar()
+        public static List<Contribuyentes> Consultar()
         {
             var lista = new List<Contribuyentes>();
             using (var connection = ConexionDb.ObtenerConexion())
@@ -84,7 +84,7 @@ namespace Contabilidad.Servicios.SQL
             }
             return lista;
         }
-        public Usuario UsuarioActivo()
+        public static Usuario UsuarioActivo()
         {
             Usuario login = null;
 

@@ -83,27 +83,12 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="mscorlib" version="4.0.0.0" publicKeyToken="B77A5C561934E089" language="neutral" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="netstandard" version="2.0.0.0" publicKeyToken="CC7B13FFCD2DDD51" language="neutral" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
       <assemblyIdentity name="PresentationCore" version="4.0.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
       <assemblyIdentity name="PresentationFramework" version="4.0.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="stdole" version="7.0.3300.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" />
     </dependentAssembly>
   </dependency>
   <dependency>
@@ -167,14 +152,29 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Contabilidad.dll" size="122368">
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="mscorlib" version="4.0.0.0" publicKeyToken="B77A5C561934E089" language="neutral" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="netstandard" version="2.0.0.0" publicKeyToken="CC7B13FFCD2DDD51" language="neutral" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="stdole" version="7.0.3300.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Contabilidad.dll" size="130048">
       <assemblyIdentity name="Contabilidad" version="1.0.0.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>POzVqsU5tjFlLH5gaO9USVWpdapVrvHn8PS/Z9uC9HM=</dsig:DigestValue>
+        <dsig:DigestValue>dudDKmnHqXv/2svjYmNsgQZMHw1tcnM+Mm8x/bQHYY4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -432,4 +432,4 @@
       </vstov4:customizations>
     </vstav3:application>
   </vstav3:addIn>
-<publisherIdentity name="CN=LAPTOPGAMING\Jaime" issuerKeyHash="f28b0d66d7aedec9295a9365182db41be5478981" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>leUkfScZ1cWIgkMXsTqzinj+k0ktUATXScShEYSvyJA=</DigestValue></Reference></SignedInfo><SignatureValue>PMhrNIk/KXZW6BMx+4VQCq05aDoKoeTtyTLzFH/egdXzd58zHirvbfiE2N1x09NFYfZrqf5WviDxB2r7c6WQbj7OhqiWf7bRhlRdDXUCfztnRbf4nYB19Fh78aN5BaU6LrrLnMhwdkHrm2768R+i+O9q/NkRUMvmIIHS2SOZ2GY=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>x5G64E+LEYusfUVkTD5GHp19tpcgTUsADKYfu6l4XO1j3hW0iL5RltegBi9kWUA+pWzPpgiXZhywAfwafqUE8MyuqyjWNejab9wbj/bc/+YsXcmjfLINUNAlJz3yTt/CPgRcZijLZsmQBNUGsCgsAiCpO0fdAggr3IPgo6T8KLk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="90c8af8411a1c449d704502d4993fe788ab33ab117438288c5d519277d24e595" Description="" Url=""><as:assemblyIdentity name="Contabilidad.dll" version="1.0.0.0" publicKeyToken="19ebc2b330b29d72" language="neutral" processorArchitecture="amd64" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=LAPTOPGAMING\Jaime</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>Yqjzm2f05h57ja0TVJwYEkLmfhiJZ/TwZ3nKGjPCRtg=</DigestValue></Reference></SignedInfo><SignatureValue>nINfhDIB2FcJ+N3bmq7DQ4mJeGaW59M8H62/Y1reli4feGIgh+kDGuh8W1uW1DieR4c8uqdUAIpfYtDboZSRosmltjI73zJAK7OPzhTQ/e+5mqMEti1S3KJD9Yq7UWaYQmciO4+uFGnAkbr357F+aTMemo2kMz0i1QjB2YxZ9R4=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>x5G64E+LEYusfUVkTD5GHp19tpcgTUsADKYfu6l4XO1j3hW0iL5RltegBi9kWUA+pWzPpgiXZhywAfwafqUE8MyuqyjWNejab9wbj/bc/+YsXcmjfLINUNAlJz3yTt/CPgRcZijLZsmQBNUGsCgsAiCpO0fdAggr3IPgo6T8KLk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB4TCCAUqgAwIBAgIQfJzio8Z/ubFOgtBKqkkOBzANBgkqhkiG9w0BAQsFADAvMS0wKwYDVQQDHiQATABBAFAAVABPAFAARwBBAE0ASQBOAEcAXABKAGEAaQBtAGUwHhcNMjYwMjI1MDE0NDQ1WhcNMjcwMjI1MDc0NDQ1WjAvMS0wKwYDVQQDHiQATABBAFAAVABPAFAARwBBAE0ASQBOAEcAXABKAGEAaQBtAGUwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMeRuuBPixGLrH1FZEw+Rh6dfbaXIE1LAAymH7upeFztY94VtIi+UZbXoAYvZFlAPqVsz6YIl2YcsAH8Gn6lBPDMrqso1jXo2m/cG4/23P/mLF3Jo3yyDVDQJSc98k7fwj4EXGYoy2bJkATVBrAoLAIgqTtH3QIIK9yD4KOk/Ci5AgMBAAEwDQYJKoZIhvcNAQELBQADgYEAMFWUOdX1Zp9ZoGCjMml98QxfoTIDFF+DPSMKteD0g0x5zRfXxsipj/0RNxuCQXxc3nxqxJjcSggwsdCmg46q94wcDyPgD4oHlGm1UCKuz40xQNH6qrRPPvJ1OcQ4D7Y2uMPxwLerWiqmlLbi5T1okiKZlyc4sNgrl7AoY4P5zyM=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
+<publisherIdentity name="CN=LAPTOPGAMING\Jaime" issuerKeyHash="f28b0d66d7aedec9295a9365182db41be5478981" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>UzrkZF8bStUwR2NHk54hN5ru5BaHbvhINFmP2ll6ACw=</DigestValue></Reference></SignedInfo><SignatureValue>eXajBEvTE266IbwGWisDZ/ewJ6HfQO6W+au7XpXMXW/YdcChDtCvKecIgItVgiXhUHPpytZNqlhGL2ceIjNbBEXF+SvL0LkurGx977N7MBh9UOjqwo0ktx9WYMg0x6V87vewRoeXSLAKNTv8wgpl96U8X/e9VBnf2cxMQKvgH/w=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>x5G64E+LEYusfUVkTD5GHp19tpcgTUsADKYfu6l4XO1j3hW0iL5RltegBi9kWUA+pWzPpgiXZhywAfwafqUE8MyuqyjWNejab9wbj/bc/+YsXcmjfLINUNAlJz3yTt/CPgRcZijLZsmQBNUGsCgsAiCpO0fdAggr3IPgo6T8KLk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="2c007a59da8f593448f86e8716e4ee9a37219e9347634730d54a1b5f64e43a53" Description="" Url=""><as:assemblyIdentity name="Contabilidad.dll" version="1.0.0.0" publicKeyToken="19ebc2b330b29d72" language="neutral" processorArchitecture="amd64" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=LAPTOPGAMING\Jaime</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>DD4ASK+J9+pN/KCGavjYCZDrln3PDmF/sXDMX86f2pc=</DigestValue></Reference></SignedInfo><SignatureValue>RBDV4Q0oHPCKFwNOoRamcCt5uyONvbGy2rAByH2ODnf9fOH1hiQ3Y03Kj5qzoVW3pkg85dMYlyRWGLrxpa7FNBj+uguO0y6joDhkzRmZZu7RJTEolTutwuCJnDL64zKNRNMxARhgbs5cFLgkLrtkFGt9D0Komw6UpfTH+zgyZJ4=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>x5G64E+LEYusfUVkTD5GHp19tpcgTUsADKYfu6l4XO1j3hW0iL5RltegBi9kWUA+pWzPpgiXZhywAfwafqUE8MyuqyjWNejab9wbj/bc/+YsXcmjfLINUNAlJz3yTt/CPgRcZijLZsmQBNUGsCgsAiCpO0fdAggr3IPgo6T8KLk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB4TCCAUqgAwIBAgIQfJzio8Z/ubFOgtBKqkkOBzANBgkqhkiG9w0BAQsFADAvMS0wKwYDVQQDHiQATABBAFAAVABPAFAARwBBAE0ASQBOAEcAXABKAGEAaQBtAGUwHhcNMjYwMjI1MDE0NDQ1WhcNMjcwMjI1MDc0NDQ1WjAvMS0wKwYDVQQDHiQATABBAFAAVABPAFAARwBBAE0ASQBOAEcAXABKAGEAaQBtAGUwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMeRuuBPixGLrH1FZEw+Rh6dfbaXIE1LAAymH7upeFztY94VtIi+UZbXoAYvZFlAPqVsz6YIl2YcsAH8Gn6lBPDMrqso1jXo2m/cG4/23P/mLF3Jo3yyDVDQJSc98k7fwj4EXGYoy2bJkATVBrAoLAIgqTtH3QIIK9yD4KOk/Ci5AgMBAAEwDQYJKoZIhvcNAQELBQADgYEAMFWUOdX1Zp9ZoGCjMml98QxfoTIDFF+DPSMKteD0g0x5zRfXxsipj/0RNxuCQXxc3nxqxJjcSggwsdCmg46q94wcDyPgD4oHlGm1UCKuz40xQNH6qrRPPvJ1OcQ4D7Y2uMPxwLerWiqmlLbi5T1okiKZlyc4sNgrl7AoY4P5zyM=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

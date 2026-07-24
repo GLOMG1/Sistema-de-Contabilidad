@@ -12,7 +12,8 @@
 				<separator id ="Separador01"/>
 				<box id="boxContribuyentes" boxStyle="vertical">
 					<button label="Abrir carpeta"
-							id="btnAbrirCarpeta"/>
+							id="btnAbrirCarpeta"
+							onAction="btonAbrirCarpeta"/>
 					<button label="Ver contraseñas"
 							id="btnVerContraseñas"/>
 					<button label="Crear ejercicio"

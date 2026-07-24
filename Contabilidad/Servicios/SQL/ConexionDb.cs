@@ -14,7 +14,6 @@ namespace Contabilidad.Servicios.SQL
     internal class ConexionDb
     {
         private static string connectionString;
-
         public static void Iniciar()
         {
             string carpetaDatos = Path.Combine(
@@ -29,7 +28,6 @@ namespace Contabilidad.Servicios.SQL
 
             SQLitePCL.Batteries.Init();
         }
-
         public static SqliteConnection ObtenerConexion()
         {
             var conexion = new SqliteConnection(connectionString);

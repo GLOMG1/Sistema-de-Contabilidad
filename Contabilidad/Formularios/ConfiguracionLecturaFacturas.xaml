@@ -86,6 +86,8 @@
                                  Checked="MenuOpcion_Checked"
                                  Tag="Catalogos"/>
                     <RadioButton Content="General"
+                                 Checked="MenuOpcion_Checked"
+                                 Tag="General"
                                  GroupName="MenuFacturas"/>
                 </StackPanel>
             </Grid>

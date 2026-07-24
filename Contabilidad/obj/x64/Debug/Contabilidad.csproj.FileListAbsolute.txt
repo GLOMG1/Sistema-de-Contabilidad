@@ -107,3 +107,5 @@ C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Formula
 C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Formularios\ConfiguracionLecturaFact\VistasUserControl.baml
 C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Formularios\ConfiguracionLecturaFact\CatalogosUserControl.g.cs
 C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Formularios\ConfiguracionLecturaFact\CatalogosUserControl.baml
+C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Formularios\ConfiguracionLecturaFact\GeneralUserControl1.g.cs
+C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\Formularios\ConfiguracionLecturaFact\GeneralUserControl1.baml

@@ -24,17 +24,15 @@ namespace Contabilidad.Formularios
         public ObservableCollection<Contribuyentes> listClientes { get; set; }
         public Contribuyentes clienteSeleccionado { get; set; }
         private Usuario UsuarioActivo { get; set; }
-        private InicioRepositorio _db;
         public Principal()
         {
             InitializeComponent();
 
-            _db = new InicioRepositorio();
 
-            UsuarioActivo = _db.UsuarioActivo();
+            UsuarioActivo = InicioRepositorio.UsuarioActivo();
             AplicarTema(UsuarioActivo);
 
-            var lista = _db.Consultar();
+            var lista = InicioRepositorio.Consultar();
             listClientes = new ObservableCollection<Contribuyentes>(lista);
 
             this.DataContext = this;
@@ -64,12 +62,12 @@ namespace Contabilidad.Formularios
             }
             else
             {
-                _db.Insertar(nombre, rfc, regimen);
+                InicioRepositorio.Insertar(nombre, rfc, regimen);
             }
         }
         private void Leer_Click(object sender, RoutedEventArgs e)
         {
-            var lista = _db.Consultar();
+            var lista = InicioRepositorio.Consultar();
 
             foreach (var c in lista)
             {
@@ -91,7 +89,7 @@ namespace Contabilidad.Formularios
                 MessageBoxImage.Exclamation);
 
             if(resultado == MessageBoxResult.Yes)
-                _db.Eliminar(clienteSeleccionado.Id);
+                InicioRepositorio.Eliminar(clienteSeleccionado.Id);
         }
         private void Iniciar_DobleClick(object sender, MouseButtonEventArgs e)
         {

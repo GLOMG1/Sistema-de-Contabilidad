@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -10,6 +11,8 @@ using Office = Microsoft.Office.Core;
 using Contabilidad.Servicios;
 using Excel= Microsoft.Office.Interop.Excel;
 using System.Drawing;
+using Contabilidad.Modelos;
+using Contabilidad.Servicios.SQL;
 
 namespace Contabilidad
 {
@@ -17,7 +20,6 @@ namespace Contabilidad
     public class Ribbon1 : Office.IRibbonExtensibility
     {
         private Office.IRibbonUI ribbon;
-
         public Ribbon1()
         {
         }
@@ -70,6 +72,10 @@ namespace Contabilidad
             var ventana = new Formularios.Principal();
             ventana.ShowDialog();
             
+        }
+        public void btonAbrirCarpeta(Office.IRibbonControl control)
+        {
+            Process.Start("explorer.exe", $"\\\\CONTA\\Users\\ERIKA\\Documents\\CLIENTES DESPACHO\\CATAR\\2026");
         }
         public void btnConciliar(Office.IRibbonControl control)
         {

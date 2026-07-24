@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|c:\\users\\contabilidad\\sistema-de-contabilidad\\contabilidad\\formularios\\ventanaconciliacion.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|solutionrelative:contabilidad\\formularios\\ventanaconciliacion.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|c:\\users\\contabilidad\\sistema-de-contabilidad\\contabilidad\\formularios\\configuracionlecturafacturas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|solutionrelative:contabilidad\\formularios\\configuracionlecturafacturas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|c:\\users\\contabilidad\\sistema-de-contabilidad\\contabilidad\\modelos\\exceldatostabla.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|solutionrelative:contabilidad\\modelos\\exceldatostabla.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|c:\\users\\contabilidad\\sistema-de-contabilidad\\contabilidad\\servicios\\sql\\iniciorepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|solutionrelative:contabilidad\\servicios\\sql\\iniciorepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|c:\\users\\contabilidad\\sistema-de-contabilidad\\contabilidad\\modelos\\classfacturas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|solutionrelative:contabilidad\\modelos\\classfacturas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|c:\\users\\contabilidad\\sistema-de-contabilidad\\contabilidad\\ribbon1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|solutionrelative:contabilidad\\ribbon1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\contabilidad\\thisaddin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|c:\\users\\contabilidad\\sistema-de-contabilidad\\contabilidad\\formularios\\principal.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|solutionrelative:contabilidad\\formularios\\principal.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|c:\\users\\contabilidad\\sistema-de-contabilidad\\contabilidad\\thisaddin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|solutionrelative:contabilidad\\thisaddin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|c:\\users\\contabilidad\\sistema-de-contabilidad\\contabilidad\\ribbon1.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{70E52460-08A5-49F7-96FC-9F0C38FAC95F}|Contabilidad\\Contabilidad.csproj|solutionrelative:contabilidad\\ribbon1.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,59 +34,85 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ThisAddIn.cs",
               "DocumentMoniker": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\ThisAddIn.cs",
               "RelativeDocumentMoniker": "Contabilidad\\ThisAddIn.cs",
               "ToolTip": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\ThisAddIn.cs",
               "RelativeToolTip": "Contabilidad\\ThisAddIn.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAgAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAEYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-09T20:17:17.682Z",
+              "WhenOpened": "2026-07-24T19:10:18.835Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ClassFacturas.cs",
-              "DocumentMoniker": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Modelos\\ClassFacturas.cs",
-              "RelativeDocumentMoniker": "Contabilidad\\Modelos\\ClassFacturas.cs",
-              "ToolTip": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Modelos\\ClassFacturas.cs",
-              "RelativeToolTip": "Contabilidad\\Modelos\\ClassFacturas.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAwwBcAAAAtAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "ConfiguracionLecturaFacturas.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Formularios\\ConfiguracionLecturaFacturas.xaml.cs",
+              "RelativeDocumentMoniker": "Contabilidad\\Formularios\\ConfiguracionLecturaFacturas.xaml.cs",
+              "ToolTip": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Formularios\\ConfiguracionLecturaFacturas.xaml.cs",
+              "RelativeToolTip": "Contabilidad\\Formularios\\ConfiguracionLecturaFacturas.xaml.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-17T18:51:59.167Z",
+              "WhenOpened": "2026-07-24T19:51:56.267Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ExcelDatosTabla.cs",
-              "DocumentMoniker": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Modelos\\ExcelDatosTabla.cs",
-              "RelativeDocumentMoniker": "Contabilidad\\Modelos\\ExcelDatosTabla.cs",
-              "ToolTip": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Modelos\\ExcelDatosTabla.cs",
-              "RelativeToolTip": "Contabilidad\\Modelos\\ExcelDatosTabla.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAdAAAAAAAAAA==",
+              "Title": "InicioRepositorio.cs",
+              "DocumentMoniker": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Servicios\\SQL\\InicioRepositorio.cs",
+              "RelativeDocumentMoniker": "Contabilidad\\Servicios\\SQL\\InicioRepositorio.cs",
+              "ToolTip": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Servicios\\SQL\\InicioRepositorio.cs",
+              "RelativeToolTip": "Contabilidad\\Servicios\\SQL\\InicioRepositorio.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwBsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-17T18:48:37.199Z",
+              "WhenOpened": "2026-07-24T19:26:54.035Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "VentanaConciliacion.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Formularios\\VentanaConciliacion.xaml.cs",
-              "RelativeDocumentMoniker": "Contabilidad\\Formularios\\VentanaConciliacion.xaml.cs",
-              "ToolTip": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Formularios\\VentanaConciliacion.xaml.cs",
-              "RelativeToolTip": "Contabilidad\\Formularios\\VentanaConciliacion.xaml.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAqwH4AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Principal.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Formularios\\Principal.xaml.cs",
+              "RelativeDocumentMoniker": "Contabilidad\\Formularios\\Principal.xaml.cs",
+              "ToolTip": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Formularios\\Principal.xaml.cs",
+              "RelativeToolTip": "Contabilidad\\Formularios\\Principal.xaml.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAEwAAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-17T18:47:53.537Z",
+              "WhenOpened": "2026-07-24T19:21:13.418Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Ribbon1.cs",
+              "DocumentMoniker": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Ribbon1.cs",
+              "RelativeDocumentMoniker": "Contabilidad\\Ribbon1.cs",
+              "ToolTip": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Ribbon1.cs",
+              "RelativeToolTip": "Contabilidad\\Ribbon1.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-24T19:10:25.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Ribbon1.xml",
+              "DocumentMoniker": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Ribbon1.xml",
+              "RelativeDocumentMoniker": "Contabilidad\\Ribbon1.xml",
+              "ToolTip": "C:\\Users\\Contabilidad\\Sistema-de-Contabilidad\\Contabilidad\\Ribbon1.xml",
+              "RelativeToolTip": "Contabilidad\\Ribbon1.xml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2026-07-24T19:10:28.412Z",
               "EditorCaption": ""
             }
           ]

@@ -490,6 +490,7 @@ namespace Contabilidad.Formularios
                             {
                                 filaTabla = fila,
                             });
+                            break;
                         }
                         fila ++;
                     }

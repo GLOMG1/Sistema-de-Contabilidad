@@ -10,11 +10,11 @@ none
 false
 VSTO40;DEBUG;TRACE
 
-6165278422
+71990925635
 21594493280
-24-1958013277
+25-780911906
 44-805109651
-Formularios\ConfiguracionLecturaFacturas.xaml;Formularios\ConfiguracionLecturaFact\CatalogosUserControl.xaml;Formularios\ConfiguracionLecturaFact\ReglasUserControl.xaml;Formularios\ConfiguracionLecturaFact\VistasUserControl.xaml;Formularios\Principal.xaml;Formularios\VentanaConciliacion.xaml;
+Formularios\ConfiguracionLecturaFacturas.xaml;Formularios\ConfiguracionLecturaFact\CatalogosUserControl.xaml;Formularios\ConfiguracionLecturaFact\GeneralUserControl1.xaml;Formularios\ConfiguracionLecturaFact\ReglasUserControl.xaml;Formularios\ConfiguracionLecturaFact\VistasUserControl.xaml;Formularios\Principal.xaml;Formularios\VentanaConciliacion.xaml;
 
 True
 
