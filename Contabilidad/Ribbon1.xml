@@ -31,11 +31,12 @@
 						size="large"/>
 				<button label="Guardar en Base de Datos"
 						id="btnGuardarBD"
+						onAction="btnGuardar"
 						getEnabled="ValidarLibro_GetEnabled"
 						getImage="GetImage"
 						size="large"/>
 				<separator id="Separador02"/>
-				<button label="Confuguraciones de lectura"
+				<button label="Confuguraciones"
 						id="btnConfiguracionFacturas"
 						onAction="btnConfiguraciones"
 						getEnabled="ValidarLibro_GetEnabled"/>
@@ -45,7 +46,14 @@
 				<button label="Descargas"
 						id="btnDescargasSAT"
 						onAction="btonPruebas"
-						getEnabled="ValidarLibro_GetEnabled"/>
+						getEnabled="ValidarLibro_GetEnabled"
+						getImage="GetImage"/>
+				<separator id="Separador03"/>
+				<button label="DIOT"
+						id="btnDiot"
+						size="large"
+						getImage="GetImage"
+						getEnabled="ValidadorLibro_GetEnabled"/>
 			</group>
 			<group id="grpProveedores" label="Proveedores">
 				<button label="Proveedores"
@@ -71,6 +79,20 @@
 			</group>
 
 			<group id="grpContabilidad" label="Contabilidad">
+				<button label="Polizas"
+						onAction="btnPolizas"
+						id="btnPolizas"
+						size="normal"
+						/>
+				<button label="Balance General"
+						id="btnBalanceGen"
+						size="normal"
+						/>
+				<button label="Configuraciones"
+						id="btnConfiguracionesContabilidad"
+						size="normal"
+					/>
+				<separator id="Separador04"/>
 				<button label="Catalogo de cuentas"
 						id="btnCatalogoCuentas"
 						getImage="GetImage"

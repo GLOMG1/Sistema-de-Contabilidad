@@ -207,7 +207,7 @@ namespace Contabilidad.Formularios
         public void CambiosValoresBancos(object sender, TextChangedEventArgs e)
         {
             timerBancos.Stop(); 
-           timerBancos.Start(); 
+            timerBancos.Start(); 
         }
         public void CambiosValoresFacturas(object sender, TextChangedEventArgs e)
         {

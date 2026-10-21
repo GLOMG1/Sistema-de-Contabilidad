@@ -16,6 +16,7 @@ namespace Contabilidad
     public partial class ThisAddIn
     {
         private Ribbon1 RibbonConta;
+        public Empresa EmpresaActiva;
         protected override Microsoft.Office.Core.IRibbonExtensibility CreateRibbonExtensibilityObject()
         {
             RibbonConta = new Ribbon1();

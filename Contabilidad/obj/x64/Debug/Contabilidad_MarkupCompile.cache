@@ -4,17 +4,17 @@
 library
 C#
 .cs
-C:\Users\Contabilidad\Sistema-de-Contabilidad\Contabilidad\obj\x64\Debug\
+C:\Users\Jaime\source\repos\Contabilidad\Contabilidad\obj\x64\Debug\
 Contabilidad
 none
 false
 VSTO40;DEBUG;TRACE
 
-71990925635
-21594493280
-24706200842
-44-805109651
-Formularios\ConfiguracionLecturaFacturas.xaml;Formularios\ConfiguracionLecturaFact\CatalogosUserControl.xaml;Formularios\ConfiguracionLecturaFact\GeneralUserControl1.xaml;Formularios\ConfiguracionLecturaFact\ReglasUserControl.xaml;Formularios\ConfiguracionLecturaFact\VistasUserControl.xaml;Formularios\Principal.xaml;Formularios\VentanaConciliacion.xaml;
+81981437617
+226669989
+27-877109265
+44-1241252359
+Formularios\ConfiguracionLecturaFacturas.xaml;Formularios\ConfiguracionLecturaFact\CatalogosUserControl.xaml;Formularios\ConfiguracionLecturaFact\GeneralUserControl1.xaml;Formularios\ConfiguracionLecturaFact\ReglasUserControl.xaml;Formularios\ConfiguracionLecturaFact\VistasUserControl.xaml;Formularios\Principal.xaml;Formularios\VentanaConciliacion.xaml;Formularios\VentanaContabilidad.xaml;
 
 False
 

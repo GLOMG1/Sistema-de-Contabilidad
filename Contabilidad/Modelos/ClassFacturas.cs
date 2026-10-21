@@ -11,21 +11,28 @@ namespace Contabilidad.Modelos
         // Identificadores y control
         public int filaTabla {  get; set; }
         public int IdRegistroBD { get; set; }
+        public string Clasificacion { get; set; }
         public string Fiscal { get; set; }
         public string Sublibro { get; set; }
 
         // Datos del comprobante
+        public string Version { get; set; }
         public string SerieFolioInterno { get; set; }
         public string RfcEmisor { get; set; }
         public string NombreEmisor { get; set; }
+        public string RfcReceptor { get; set; }
+        public string NombreReceptor { get; set; }
         public DateTime FechaCFDI { get; set; }
         public string TipoCFDI { get; set; }
         public string UsoCFDI { get; set; }
+        public string CondicionPago { get; set; }
         public string FolioUUID { get; set; }
         public string RelacionNC { get; set; }
         public string RelacionREP { get; set; }
         public string FormaPago { get; set; }
         public string MetodoPago { get; set; }
+        public string Moneda { get; set; }
+        public decimal TipoCambio { get; set; }
         public string Concepto { get; set; }
         public string IcaRegistro { get; set; }
 

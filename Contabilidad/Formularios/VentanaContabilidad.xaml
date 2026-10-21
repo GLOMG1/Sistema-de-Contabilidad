@@ -1,0 +1,95 @@
+﻿<Window x:Class="Contabilidad.Formularios.VentanaContabilidad"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Contabilidad.Formularios"
+             Title="Modulo de Contabilidad"
+             WindowStartupLocation="CenterScreen"
+             MinWidth="1100"
+             MinHeight="700">
+    <Window.Resources>
+
+        <SolidColorBrush x:Key="ColorPrincipal" Color="#1B1B1B"/>
+        <SolidColorBrush x:Key="ColorSecundario" Color="#FFE7D0"/>
+        <SolidColorBrush x:Key="ColorAcento" Color="#FC6E20"/>
+        <SolidColorBrush x:Key="ColorElevado" Color="#323232"/>
+
+        <Style TargetType="StackPanel">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+
+        <Style TargetType="RadioButton">
+            <Setter Property="Foreground" Value="{DynamicResource ColorElevado}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="44"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="Fondo"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                BorderThickness="4,0,0,0"
+                                Padding="16,0">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Fondo" Property="Background" Value="{DynamicResource ColorElevado}"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Fondo" Property="Background" Value="{DynamicResource ColorAcento}"/>
+                                <Setter TargetName="Fondo" Property="BorderBrush" Value="{DynamicResource ColorAcento}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="{DynamicResource ColorPrincipal}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Fondo"
+                                Background="{DynamicResource ColorAcento}"
+                                CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Fondo" Property="Background" Value="{DynamicResource ColorElevado}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <Button Content="Abrir"/>
+            <RadioButton Content="Nueva Poliza"/>
+            <RadioButton Content="Polizas"/>
+            <RadioButton Content="Balance General"/>
+        </StackPanel>
+        
+        <ContentControl x:Name="PanelCentral"
+            Grid.Column="1"/>
+    </Grid>
+</Window>

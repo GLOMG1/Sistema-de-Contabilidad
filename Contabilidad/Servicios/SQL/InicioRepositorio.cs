@@ -2,6 +2,7 @@
 using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +13,14 @@ namespace Contabilidad.Servicios.SQL
 {
     public static class InicioRepositorio
     {
-        public static void Insertar(string Nombre, string Rfc, int Regimen)
+        public static void Insertar(string Nombre, string Rfc, int Regimen, string Ruta)
         {
+            Ruta = VerificacionCarpeta(Ruta, Nombre);
+            if (Ruta == null)
+            {
+                MessageBox.Show("Ya existe una carpeta con el mismo nombre en esa ruta");
+                return;
+            }
             try
             {
                 using (var connection = ConexionDb.ObtenerConexion())
@@ -23,12 +30,13 @@ namespace Contabilidad.Servicios.SQL
                     {
                         command.CommandText =
                             @"
-                        INSERT INTO Contribuyentes (Nombre, Rfc, Regimen)
-                        VALUES ($Nombre, $Rfc, $Regimen)";
+                        INSERT INTO Contribuyentes (Nombre, Rfc, Regimen, RutaDeTrabajo)
+                        VALUES ($Nombre, $Rfc, $Regimen, $RutaDeTrabajo)";
 
                         command.Parameters.AddWithValue("$Nombre", Nombre);
                         command.Parameters.AddWithValue("$Rfc", Rfc);
                         command.Parameters.AddWithValue("$Regimen", Regimen);
+                        command.Parameters.AddWithValue("$RutaDeTrabajo", Ruta);
 
                         command.ExecuteNonQuery();
                     }
@@ -58,25 +66,26 @@ namespace Contabilidad.Servicios.SQL
                 }
             }
         }
-        public static List<Contribuyentes> Consultar()
+        public static List<Empresa> Consultar()
         {
-            var lista = new List<Contribuyentes>();
+            var lista = new List<Empresa>();
             using (var connection = ConexionDb.ObtenerConexion())
             {
 
                 using (var command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT Id, Nombre, Rfc, Regimen FROM Contribuyentes;";
+                    command.CommandText = "SELECT Id, Nombre, Rfc, Regimen, RutaDeTrabajo FROM Contribuyentes;";
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            lista.Add(new Contribuyentes
+                            lista.Add(new Empresa
                             {
                                 Id = reader.GetInt32(0),
                                 Nombre = reader.GetString(1),
                                 Rfc = reader.GetString(2),
-                                Regimen = reader.GetInt32(3)
+                                Regimen = reader.GetInt32(3),
+                                RutaDeTrabajo = reader.GetString(4)
                             });
                         }
                     }
@@ -112,6 +121,47 @@ namespace Contabilidad.Servicios.SQL
             }
 
             return login;
+        }
+        public static Empresa EmpresaActiva()
+        {
+            Empresa login = null;
+
+            using (var coneccion = ConexionDb.ObtenerConexion())
+            {
+                using (var comando = coneccion.CreateCommand())
+                {
+                    comando.CommandText = "SELECT Nombre, Rfc, Regimen, RutaDeTrabajo FROM Contribuyentes LIMIT 1;";
+                    using (var lector = comando.ExecuteReader())
+                    {
+                        if (lector.Read())
+                        {
+                            login = new Empresa
+                            {
+                                Nombre = lector.GetString(0),
+                                Rfc = lector.GetString(1),
+                                Regimen = lector.GetInt32(2),
+                                RutaDeTrabajo = lector.GetString(3)
+                            };
+                        }
+                    }
+                }
+            }
+
+            return login;
+        }
+        private static string VerificacionCarpeta(string ruta, string nombre)
+        {
+            string carpetaDatos = Path.Combine(ruta, nombre);
+
+            if (Directory.Exists(carpetaDatos))
+            {
+                return null;
+            }
+            else
+            {
+                Directory.CreateDirectory(carpetaDatos);
+                return carpetaDatos;
+            }
         }
     }
 }

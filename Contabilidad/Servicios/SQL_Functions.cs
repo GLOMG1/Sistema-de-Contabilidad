@@ -9,6 +9,7 @@ using System.Windows;
 
 namespace Contabilidad.Servicios
 {
+    /*
     public class Contribuyentes
     {
         public int Id { get; set; }
@@ -113,5 +114,5 @@ namespace Contabilidad.Servicios
             }
             return lista;
         }
-    }
+    }*/
 }

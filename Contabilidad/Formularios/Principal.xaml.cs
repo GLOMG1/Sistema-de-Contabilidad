@@ -16,13 +16,14 @@ using Contabilidad.Servicios;
 using System.Collections.ObjectModel;
 using Contabilidad.Servicios.SQL;
 using Contabilidad.Modelos;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Contabilidad.Formularios
 {
     public partial class Principal : Window
     {
-        public ObservableCollection<Contribuyentes> listClientes { get; set; }
-        public Contribuyentes clienteSeleccionado { get; set; }
+        public ObservableCollection<Empresa> listClientes { get; set; }
+        public Empresa clienteSeleccionado { get; set; }
         private Usuario UsuarioActivo { get; set; }
         public Principal()
         {
@@ -33,7 +34,7 @@ namespace Contabilidad.Formularios
             AplicarTema(UsuarioActivo);
 
             var lista = InicioRepositorio.Consultar();
-            listClientes = new ObservableCollection<Contribuyentes>(lista);
+            listClientes = new ObservableCollection<Empresa>(lista);
 
             this.DataContext = this;
         }
@@ -54,16 +55,25 @@ namespace Contabilidad.Formularios
         {
             string nombre = txtNombre.Text;
             string rfc = txtRfc.Text;
-            int regimen = txtRegimen.LineCount;
+            int regimen = Convert.ToInt32(txtRegimen.Text);
+            string ruta = txtRutaCarpeta.Text;
 
-            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(rfc))
+            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(rfc) || string.IsNullOrEmpty(ruta))
             {
                 MessageBox.Show("Ponte trucha bb");
             }
             else
             {
-                InicioRepositorio.Insertar(nombre, rfc, regimen);
+                InicioRepositorio.Insertar(nombre, rfc, regimen, ruta);
             }
+
+            txtNombre.Clear();
+            txtRfc.Clear();
+            txtRegimen.Clear();
+            txtRutaCarpeta.Clear();
+
+            panelClientes.Visibility = Visibility.Visible;
+            panelAltaClientes.Visibility = Visibility.Collapsed;
         }
         private void Leer_Click(object sender, RoutedEventArgs e)
         {
@@ -95,7 +105,23 @@ namespace Contabilidad.Formularios
         {
             Excel_Function x = new Excel_Function();
             x.CrearTabla(clienteSeleccionado);
+
+            EmpresaDb.Iniciar();
+
             this.Close();
+        }
+        private void BuscaRuta_Click(object sender, RoutedEventArgs e)
+        {
+            using (var ventana = new CommonOpenFileDialog())
+            {
+                ventana.IsFolderPicker = true;
+                ventana.Title = "Seleccione la ruta donde se guardara el expediente de la empresa";
+
+                if (ventana.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    txtRutaCarpeta.Text = ventana.FileName;
+                }
+            }
         }
         private void AplicarTema(Usuario us)
         {

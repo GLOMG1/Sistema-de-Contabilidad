@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using Office = Microsoft.Office.Core;
 
 namespace Contabilidad.Servicios
 {
@@ -39,15 +40,51 @@ namespace Contabilidad.Servicios
         {
             return (Excel.Worksheet)app.ActiveSheet;
         }
-        public void CrearTabla(Contribuyentes objContribuyente)
+        private bool Verificacion()
+        {
+            Excel.Workbook wb = (Excel.Workbook)app.ActiveWorkbook;
+
+            if (string.IsNullOrEmpty(wb.Path))
+                return false;
+
+            if (ObtenerPropiedad("Version_AddIn") == null)
+                return false;
+
+            bool ExisteEgresos = wb.Worksheets
+                .Cast<Excel.Worksheet>()
+                .Any(s => s.Name == "BaseEgresos");
+
+            bool ExisteIngresos = wb.Worksheets
+                .Cast<Excel.Worksheet>()
+                .Any(s => s.Name == "BaseIngresos");
+
+            bool ExisteBancos = wb.Worksheets
+                .Cast<Excel.Worksheet>()
+                .Any(s => s.Name == "Bancos");
+
+            if (!ExisteEgresos)
+            {
+                MessageBox.Show("No se encontro la hoja: BaseEgresos");
+            }
+            else
+            {
+                /*Programmar la verificacion del listobject*/
+            }
+
+            if (!ExisteIngresos)
+                MessageBox.Show("No se encontro la hoja: BaseIngresos");
+
+            if (!ExisteBancos)
+                MessageBox.Show("No se encontro la hoja: Bancos");
+
+            return ExisteEgresos && ExisteIngresos && ExisteBancos;
+        }
+        public void CrearTabla(Empresa objContribuyente)
         {
             Excel.Worksheet sheet = HojaActiva();
+            AñadirMetaDatos(objContribuyente.Nombre, objContribuyente.RutaDeTrabajo);
 
-            bool papelTrabajo = sheet.ListObjects
-                .Cast<Excel.ListObject>()
-                .Any(t => t.Name == "tblEgresos");
-
-            if (!papelTrabajo)
+            if (!Verificacion())
             {
                 FuncionesExcel(true);
 
@@ -224,6 +261,9 @@ namespace Contabilidad.Servicios
         }
         public ExcelDatosTabla ObtenerTabla(string nombreTabla)
         {
+            if (!Verificacion())
+                return null;
+
             Excel.Worksheet hoja;
 
             switch (nombreTabla)
@@ -255,6 +295,64 @@ namespace Contabilidad.Servicios
                 Encabezados = headers,
                 Datos = (object[,])tbl.DataBodyRange.Value2
             };
+        }
+        private void AñadirMetaDatos(string nombre, string ruta)
+        {
+            Excel.Workbook wb = (Excel.Workbook)app.ActiveWorkbook;
+            Office.DocumentProperties propiedades = (Office.DocumentProperties)wb.CustomDocumentProperties;
+
+            try
+            {
+                propiedades["Empresa"].Value = nombre;
+            }
+            catch
+            {
+                propiedades.Add(
+                    "Empresa",
+                    false,
+                    Office.MsoDocProperties.msoPropertyTypeString,
+                    nombre);
+            }
+            try
+            {
+                propiedades["RutaDeTrabajo"].Value = ruta;
+            }
+            catch
+            {
+                propiedades.Add(
+                    "RutaDeTrabajo",
+                    false,
+                    Office.MsoDocProperties.msoPropertyTypeString,
+                    ruta);
+            }
+            try
+            {
+                propiedades["Version_AddIn"].Value = "1.0.0";
+            }
+            catch
+            {
+                propiedades.Add(
+                    "Version_AddIn",
+                    false,
+                    Office.MsoDocProperties.msoPropertyTypeString,
+                    "1.0.0");
+            }
+        }
+        public string ObtenerPropiedad(string nombre)
+        {
+            Excel.Workbook wb = (Excel.Workbook)app.ActiveWorkbook;
+            Office.DocumentProperties propiedades = (Office.DocumentProperties)wb.CustomDocumentProperties;
+            try
+            {
+                var propiedad = propiedades[nombre];
+                return propiedad.Value.ToString();
+            }
+            catch
+            {
+                MessageBox.Show($"Propiedad: {nombre} no existe");
+                return null;
+            }
+
         }
     }
 }

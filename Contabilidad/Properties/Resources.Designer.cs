@@ -103,6 +103,16 @@ namespace Contabilidad.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Generar {
+            get {
+                object obj = ResourceManager.GetObject("Generar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Guardar {
             get {
                 object obj = ResourceManager.GetObject("Guardar", resourceCulture);

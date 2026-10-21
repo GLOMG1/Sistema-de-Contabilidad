@@ -64,6 +64,8 @@ namespace Contabilidad
                     return Properties.Resources.Evento_Economico;
                 case "btnDeterminarImp":
                     return Properties.Resources.SAT;
+                case "btnDiot":
+                    return Properties.Resources.Generar;
             }
             return null;
         }
@@ -75,11 +77,17 @@ namespace Contabilidad
         }
         public void btonAbrirCarpeta(Office.IRibbonControl control)
         {
-            Process.Start("explorer.exe", $"\\\\CONTA\\Users\\ERIKA\\Documents\\CLIENTES DESPACHO\\CATAR\\2026");
+            Excel_Function Instancia = new Excel_Function();
+            Process.Start("explorer.exe", Instancia.ObtenerPropiedad("RutaDeTrabajo"));
         }
         public void btnConciliar(Office.IRibbonControl control)
         {
             var ventana = new Formularios.VentanaConciliacion();
+            ventana.ShowDialog();
+        }
+        public void btnPolizas(Office.IRibbonControl control)
+        {
+            var ventana = new Formularios.VentanaContabilidad();
             ventana.ShowDialog();
         }
         public void btnConfiguraciones(Office.IRibbonControl control)
@@ -91,6 +99,13 @@ namespace Contabilidad
         {
             Excel_Function x = new Excel_Function();
             x.CargarDatos();
+        }
+        public void btnGuardar(Office.IRibbonControl control)
+        {
+            Excel_Function y = new Excel_Function();
+            FacturasRepositorio x = new FacturasRepositorio(y.ObtenerTabla("TblFactEgresos"));
+            x.InsertarFacturas();
+
         }
         public void btnCrearEjercicio(Office.IRibbonControl control)
         {

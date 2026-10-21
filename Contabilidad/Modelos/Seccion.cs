@@ -15,4 +15,12 @@ namespace Contabilidad.Modelos
         public string ColorAcento { get; set; }
         public string ColorElevado { get; set; }
     }
+    public class Empresa
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Rfc { get; set;}
+        public int Regimen { get; set; }
+        public string RutaDeTrabajo { get; set; }
+    }
 }

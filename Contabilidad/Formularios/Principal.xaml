@@ -31,6 +31,11 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="{DynamicResource ColorSecundario}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
         
     </Window.Resources>
     <Grid Background="{DynamicResource ColorPrincipal}">
@@ -56,7 +61,7 @@
                  MouseDoubleClick="Iniciar_DobleClick"
                  ItemsSource="{Binding listClientes}" DisplayMemberPath="Nombre"
                  SelectedItem="{Binding clienteSeleccionado}"
-                 Grid.Row="1" Visibility="Visible" Margin="10"
+                 Grid.Row="1" Visibility="Collapsed" Margin="10"
                  Background="{DynamicResource ColorElevado}"
                  BorderThickness="0"
                  FontFamily="Bold"
@@ -66,8 +71,8 @@
 
         <Grid x:Name="panelAltaClientes" 
               Grid.Row="1"
-              Margin="15,30,15,20"
-              Visibility="Collapsed">
+              Margin="15,10,15,15"
+              Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -82,20 +87,13 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0"
-                   Content="Razon Social"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Foreground="{DynamicResource ColorSecundario}"/>
+                   Content="Razon Social"/>
             <Label Grid.Row="1" Grid.Column="0"
-                   Content="RFC"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Foreground="{DynamicResource ColorSecundario}"/>
+                   Content="RFC"/>
             <Label Grid.Row="2" Grid.Column="0"
-                   Content="Regimen Fiscal"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Foreground="{DynamicResource ColorSecundario}"/>
+                   Content="Regimen Fiscal"/>
+            <Label Grid.Row="3" Grid.Column="0"
+                   Content="Ruta del expediente"/>
 
             <TextBox x:Name="txtNombre" Grid.Row="0" Grid.Column="1"
                      Height="25"
@@ -110,15 +108,32 @@
             <TextBox x:Name="txtRegimen" Grid.Row="2" Grid.Column="1"
                      Height="25"
                      Margin="5">
-
             </TextBox>
+            <Grid Grid.Row="3" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="txtRutaCarpeta" Grid.Column="0"
+                         Height="25"
+                         Margin="5">
+                    
+                </TextBox>
+
+                <Button x:Name="btnBuscarRuta" 
+                        Click="BuscaRuta_Click"
+                        Content=". . ."
+                        Grid.Column="1"/>
+            </Grid>
+            
 
             <Button x:Name="btnAgregarCliente"
-                    Content="Insertar"
+                    Content="Agregar"
                     Click="AgregarCliente_Click"
                     Grid.Row="4"
                     Grid.ColumnSpan="2"
-                    Margin="100,5,100, 0">
+                    Margin="100,8,100, 0">
                 
             </Button>
 

@@ -130,6 +130,9 @@
   <data name="Evento_Economico" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Evento Economico.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Generar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\descarga-de-carpetas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Guardar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Guardar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
